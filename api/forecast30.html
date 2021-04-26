@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang='en'>
+    
+<!-- Mirrored from openweathermap.org/api/forecast30 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <!-- smart banner apple -->
+        <meta name="apple-itunes-app" content="app-id=1535923697">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+    <meta  http-equiv=Expires content="Tue, Sep 20 2018 15:27:22 GMT">
+    <meta http-equiv="Last-Modified" content="Tue, Sep 20 2018 15:27:22 GMT">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="weather, world, Openstreetmap, forecast, Openweather, current" >
+    <meta name="description" content="" >
+    <meta name="author" content="OpenWeatherMap.org">
+    <meta name="domain" content="OpenWeatherMap.org" >        
+    <meta name="p:domain_verify" content="34fe229eab8562dca90f4a5962ff80a9"/>
+    <meta property="title" content="Climate forecast for 30 days" />                <link rel="shortcut icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/favicon.ico" />
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_60x60.png" sizes="60x60" type="image/png">   
+        <title>Climate forecast for 30 days - OpenWeatherMap</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31601618-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-31601618-1');
+</script>        
+        <script src="../../code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="../../cdn.polyfill.io/v2/polyfill.min9e24.js?features=Array.from,Array.assign,fetch&amp;flags=always,gated"></script>
+<script src='../themes/openweathermap/assets/js/bundle_owm_preload.c31872127471c475ade1.js'></script>            
+        <link href='../themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css' rel="stylesheet"> 
+<link href='../themes/openweathermap/assets/css/stick_footer_panel.c31872127471c475ade1.css' rel="stylesheet">
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">        <link href='../themes/openweathermap/assets/css/new_owm_styles.522b0c2ecd513644.css' rel="stylesheet"> 
+
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">    
+        
+    </head>
+    <body class="body-orange" onClick="closePopUps()">
+                    <style>
+    .banner_stripe {
+        width: 100%; 
+        height: 80px; 
+        background-color: #1c1c1e;
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        font-family: Roboto,sans-serif;
+        position: relative;
+    }
+
+    .banner_icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 15px;
+        background-size: 64px 64px;
+        margin: 8px;
+    }
+    .google_button {
+        /* background-color: #3e83f8; */
+        background-color: #2196f3;
+        height: 36px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+        box-sizing: border-box;
+        color: #fff !important;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        line-height: 24px;
+        margin: 6px;
+        min-width: 40px;
+        outline: 0;
+        padding: 10px 14px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .google_button:hover, .google_button:focus {
+        text-decoration: none;
+    }
+    .smartbanner__exit {
+        position: absolute;
+        top: calc(50% - 6px);
+        left: 12px;
+        display: block;
+        margin: 0;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        text-align: center; 
+        }
+    .smartbanner__exit::before, .smartbanner__exit::after {
+      position: absolute;
+      width: 1px;
+      height: 12px;
+      content: ' ';
+      background: #767676;
+      }
+    .smartbanner__exit::before {
+      transform: rotate(45deg); }
+    .smartbanner__exit::after {
+      transform: rotate(-45deg); }
+
+</style>
+
+<div id="banner_android" class="banner_stripe">
+    <div style="display: flex; flex-direction: row; align-items: center; margin-left: 18px;">
+        <a class="smartbanner__exit" onClick="bannerClose()"></a>
+        <img src="../themes/openweathermap/assets/img/mobile_app/android_icon.png" class="banner_icon" />
+        <div>
+            <p style="font-size: 14px; color: #ffffff; margin: 0;">OpenWeather</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">OpenWeather Ltd.</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">GET - on Google Play</p>
+        </div>
+    </div>
+    <a class="google_button" style="font-size: 16px;" href="https://play.google.com/store/apps/details?id=uk.co.openweather" onclick="ga('send', 'event', 'app', 'click', 'androidTopBanner');">VIEW</a>
+</div>
+
+<script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function setCookie (name, value) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (5 * 1000 * 60 * 60 * 24))
+        document.cookie = name + '=' + escape(value) + '; expires=' + expires.toGMTString() + '; path=/'
+      }
+      
+    function bannerClose() {
+        document.getElementById("banner_android").style.display = "none";
+        setCookie("owm_banner_android_closed", true)
+    }
+    
+    document.onload = function() {
+       if ((document.cookie.indexOf("owm_banner_android_closed") === -1)  && /Android/i.test(window.navigator.userAgent)) {
+           document.getElementById("banner_android").style.display = 'flex';
+        } 
+    }()
+    
+    
+</script>   
+                <ul id="header-website" onClick="toggleMenu(event)">
+      <li class="logo">
+        <a href="../index.html">
+          <img src="../themes/openweathermap/assets/img/logo_white_cropped.png">
+        </a>
+      </li>
+      <li class="hamburger">
+        <img src="../themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"/>
+      </li>
+      <li>
+        <form role="search" id="nav-search-form" action="https://openweathermap.org/find" method="get">
+            <input type="text" id="q" name="q"  placeholder="Weather in your city">
+            <input type="submit" style="display:none;">
+        </form>
+      </li>
+      
+      <li>
+        <a href="../guide.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Guide</a>
+      </li>
+      <li>
+        <a href="../api.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'api']);">API</a>
+      </li>
+      <li>
+        <a href="../price.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'price']);">Pricing</a>
+      </li>
+      <li>
+        <a href="../weathermap.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Maps</a>
+      </li>
+      <li>
+        <a href="../our-initiatives.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Our Initiatives</a>
+      </li>
+      <li>
+        <a href="../examples.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'examples']);">Partners</a>
+      </li>
+      <li>
+        <a href="https://openweather.co.uk/blog/category/weather" target="_blank" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'news']);">Blog</a>
+      </li>
+      <!-- <li>
+        <a href="/about-us" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">About us</a>
+      </li> -->
+      <li>
+        <a href="https://home.openweathermap.org/marketplace" class="market-place" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'marketplace']);" target="_blank">Marketplace</a>
+      </li>
+                <li class="user-sign-in" id="sign_in"><a href="../home/sign_in.html">Sign in</a></li>
+            <li class="support-item">
+        <a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support</a>
+      </li>
+    </ul>
+<!-- Invisible header to take up the height -->
+<!-- <div style="height: 48pt; width: 100%; visibility: hidden;"></div> --> 
+        <div id="notes_block"></div>
+        <main class="wrapper"> 
+                            <div class="topic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                                    <h1 class="breadcrumb-title">Climate forecast for 30 days</h1>
+                            </div>
+            <div class="col-sm-5">
+                <ol class="breadcrumb pull-right hidden-xs">
+                    <li><a href="../index.html">Home</a></li>
+                                            <li class="active"><a href="../api.html">API</a></li>
+                                                            
+                                                                        <li class="breadcrumb__leaf">Climate forecast for 30 days</li>
+                                                            </ol>
+            </div>
+        </div>
+    </div>   
+</div>       
+                                    <div class="container documentation">
+   <div class="doc-container">
+     <div>
+       <nav>
+            <ul>
+               <li>
+                  <a href="#year">Call weather forecast for 30 days</a>
+                  <ul>
+                     <li><a href="#name-year">By city name</a></li>
+                     <li><a href="#cityid-year">By city ID</a></li>
+                     <li><a href="#geo-year">By geographic coordinates</a></li>
+                     <li><a href="#zip-year">By ZIP code</a></li>
+                  </ul>
+               <li><a href="#resp-year">Weather fields in API response</a></li>
+               <li>
+                 <a href="#other">Other features</a>
+                 <ul>
+                <li><a href="#format">Format</a></li>
+                <li><a href="#limit">Limitation of result</a></li>
+                <li><a href="#data">Units of measurement</a></li>
+                <li><a href="#multi">Multilingual support</a></li>
+                <li><a href="#call">Call back function for JavaScript code</a></li>
+             </ul>
+          </li>
+               </li>
+            </ul>
+         </nav>
+         <div class="side-banner">
+              <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- Skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="6999090776"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>            </div>
+     </div>
+     <div>
+        <p class=lead>
+           Climate Forecast 30 Days allows you to request daily weather data for the next 30 days. Data is available in JSON and XML formats.
+        </p>
+        <section id="year">
+           <h2>Call weather forecast for 30 days</h2>
+
+           <section id="name-year">
+              <h3>Request by city name</h3>
+              <p class="sub-header">API call</p>
+              <div class="api">
+                 <code>
+                    https://pro.openweathermap.org/data/2.5/forecast/climate?q={city name},{country code}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a>
+                 </code>
+              </div>
+              <table class="material-table">
+                 <tr>
+                    <th colspan="3">Parameters</th>
+                 </tr>
+                 <tr>
+                    <td><code class="nowrap">q</code></td>
+                    <td class="sub">required</td>
+                    <td>city name and country code divided by comma (please use ISO 3166 country codes)</td>
+                 </tr>
+                <tr>
+                 <td><code class="nowrap">appid</code></td>
+                 <td class="sub">required</td>
+                <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+              </tr>
+              <tr>
+                   <td><code>cnt</code></td>
+                  <td class="sub">optional</td>
+                  <td>A number of days, which will be returned in the API response (from <code>1</code> to <code>16</code>). <a href="#limit">Learn more</a></td>
+                </tr>
+               <tr>
+                 <td><code>mode</code></td>
+                 <td class="sub">optional</td>
+                 <td>Data format. Possible values are: <code>json</code>, <code>xml</code>. If the <code>mode</code> parameter is empty the format is JSON by default. <a href="#format">Learn more</a></td>
+               </tr>
+                <tr>
+                 <td><code>units</code></td>
+                 <td class="sub">optional</td>
+                 <td>Units of measurement. <code>standard</code>, <code>metric</code> and <code>imperial</code> units are available. If you do not use the <code>units</code> parameter, <code>standard</code> units will be applied by default. <a href="#data">Learn more</a></td>
+              </tr>
+               <tr>
+                 <td><code>lang</code></td>
+                 <td class="sub">optional</td>
+                 <td>Language code. <a href="#multi">Learn more</a></td>
+               </tr>
+              </table>
+              <p class="sub-header">Example of API call</p>
+              <div class="api example">
+                 <code>
+                     https://pro.openweathermap.org/data/2.5/forecast/climate?q=London&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a>
+                 </code>
+              </div>
+
+              <div class="info-board info-board-blue">
+                 When requesting API by city name, there is a possibility to receive a central district of the city/town with its own parameters (geographic coordinates/id/name) in API response.
+              </div>
+           </section>
+           <section id="cityid-year">
+              <h3>Request by city ID</h3>
+              <p>List of city IDs can be downloaded <a target="_blank" href="http://bulk.openweathermap.org/sample/history.city.list.json.gz">here</a>.</p>
+              <p>We recommend to call API by city ID to get unambiguous result for your city.</p>
+              <p class="sub-header">API call</p>
+              <div class="api">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?id={city ID}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+              </div>
+              <table class="material-table">
+                 <tr>
+                    <th colspan="3">Parameters</th>
+                 </tr>
+                 <tr>
+                    <td><code>id</code></td>
+                    <td class="sub">required</td>
+                    <td>city ID</td>
+                 </tr>
+                <tr>
+                 <td><code class="nowrap">appid</code></td>
+                 <td class="sub">required</td>
+                <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+              </tr>
+              <tr>
+                   <td><code>cnt</code></td>
+                  <td class="sub">optional</td>
+                  <td>A number of days, which will be returned in the API response (from <code>1</code> to <code>16</code>). <a href="#limit">Learn more</a></td>
+                </tr>
+               <tr>
+                 <td><code>mode</code></td>
+                 <td class="sub">optional</td>
+                 <td>Data format. Possible values are: <code>json</code>, <code>xml</code>. If the <code>mode</code> parameter is empty the format is JSON by default. <a href="#format">Learn more</a></td>
+               </tr>
+                <tr>
+                 <td><code>units</code></td>
+                 <td class="sub">optional</td>
+                 <td>Units of measurement. <code>standard</code>, <code>metric</code> and <code>imperial</code> units are available. If you do not use the <code>units</code> parameter, <code>standard</code> units will be applied by default. <a href="#data">Learn more</a></td>
+              </tr>
+               <tr>
+                 <td><code>lang</code></td>
+                 <td class="sub">optional</td>
+                 <td>Language code. <a href="#multi">Learn more</a></td>
+               </tr>
+              </table>
+              <p class="sub-header">Example of API call</p>
+              <div class="api example">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?id=2643743&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+           </section>
+
+           <section id="geo-year">
+              <h3>Request by geographic coordinates </h3>
+              <p class="sub-header">API call</p>
+              <div class="api">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?lat={lat}&lon={lon}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+              </div>
+
+              <table class="material-table">
+                 <tr>
+                    <th colspan="3">Parameters</th>
+                 </tr>
+                 <tr>
+                    <td><code class="nowrap">lat, lon</code></td>
+                   <td class="sub">required</td>
+                   <td>Coordinates of the location of your interest</td>
+                 </tr>
+                <tr>
+                 <td><code class="nowrap">appid</code></td>
+                 <td class="sub">required</td>
+                <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+              </tr>
+              <tr>
+                   <td><code>cnt</code></td>
+                  <td class="sub">optional</td>
+                  <td>A number of days, which will be returned in the API response (from <code>1</code> to <code>16</code>). <a href="#limit">Learn more</a></td>
+                </tr>
+               <tr>
+                 <td><code>mode</code></td>
+                 <td class="sub">optional</td>
+                 <td>Data format. Possible values are: <code>json</code>, <code>xml</code>. If the <code>mode</code> parameter is empty the format is JSON by default. <a href="#format">Learn more</a></td>
+               </tr>
+                <tr>
+                 <td><code>units</code></td>
+                 <td class="sub">optional</td>
+                 <td>Units of measurement. <code>standard</code>, <code>metric</code> and <code>imperial</code> units are available. If you do not use the <code>units</code> parameter, <code>standard</code> units will be applied by default. <a href="#data">Learn more</a></td>
+              </tr>
+               <tr>
+                 <td><code>lang</code></td>
+                 <td class="sub">optional</td>
+                 <td>Language code. <a href="#multi">Learn more</a></td>
+               </tr>
+              </table>
+              <p class="sub-header">Example of API call</p>
+              <div class="api">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?lat=35&lon=139&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+              </div>
+           </section>
+
+           <section id="zip-year">
+              <h3 id="zip">Request by ZIP code </h3>
+             <p>Please note that, if the country code is not specified, then the search function will use <code>usa</code> by default.</p>
+              <p class="sub-header">API call</p>
+              <div class="api">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?zip={zip code},{country code}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+              </div>
+              <table class="material-table">
+                 <tr>
+                    <th colspan="3">Parameters</th>
+                 </tr>
+                 <tr>
+                   <td><code class="nowrap">zip</code></td>
+                   <td class="sub">required</td>
+                   <td>Zip code</td>
+                 </tr>
+                <tr>
+                 <td><code class="nowrap">appid</code></td>
+                 <td class="sub">required</td>
+                <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+              </tr>
+              <tr>
+                   <td><code>cnt</code></td>
+                  <td class="sub">optional</td>
+                  <td>A number of days, which will be returned in the API response (from <code>1</code> to <code>16</code>). <a href="#limit">Learn more</a></td>
+                </tr>
+               <tr>
+                 <td><code>mode</code></td>
+                 <td class="sub">optional</td>
+                 <td>Data format. Possible values are: <code>json</code>, <code>xml</code>. If the <code>mode</code> parameter is empty the format is JSON by default. <a href="#format">Learn more</a></td>
+               </tr>
+                <tr>
+                 <td><code>units</code></td>
+                 <td class="sub">optional</td>
+                 <td>Units of measurement. <code>standard</code>, <code>metric</code> and <code>imperial</code> units are available. If you do not use the <code>units</code> parameter, <code>standard</code> units will be applied by default. <a href="#data">Learn more</a></td>
+              </tr>
+               <tr>
+                 <td><code>lang</code></td>
+                 <td class="sub">optional</td>
+                 <td>Language code. <a href="#multi">Learn more</a></td>
+               </tr>
+              </table>
+
+              <p class="sub-header">Example of API call</p>
+              <div class="api example">
+                 <code>https://pro.openweathermap.org/data/2.5/forecast/climate?zip=94040,us&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+              </div>
+           </section>
+        </section>
+        <section id="resp-year">
+           <h2>Weather fields in API response</h2>
+           <div class="response open">
+              <div class="api">
+                 Example of API response
+              </div>
+              <div class="content">
+                 <pre>
+                    <code class="json">
+{
+   "cod":"200",
+   "city":{
+      "id":2643743,
+      "name":"London",
+      "coord":{
+         "lon":-0.1277,
+         "lat":51.5073
+      },
+      "country":"GB"
+   },
+   "message":0.353472054,
+   "list":[
+      {
+         "dt":1594382400,
+         "sunrise":1594353335,
+         "sunset":1594412149,
+         "temp":{
+            "day":286.98,
+            "min":285.22,
+            "max":287.97,
+            "night":285.22,
+            "eve":287.97,
+            "morn":287.29
+         },
+         "feels_like":{
+            "day":282.61,
+            "night":283.19,
+            "eve":284.98,
+            "morn":282.68
+         },
+         "pressure":1016,
+         "humidity":84,
+         "weather":[
+            {
+               "id":500,
+               "main":"Rain",
+               "description":"light rain",
+               "icon":"10d"
+            }
+         ],
+         "speed":6.78,
+         "deg":320,
+         "clouds":81,
+         "rain":1.96
+      },
+.....
+
+                    </code>
+                 </pre>
+              </div>
+           </div>
+           <p class="sub-header">Fields in API response</p>
+           <ul class="docs-list">
+           <li>
+              <code>city</code>
+              <ul>
+                 <li><code>city.id</code> City ID</li>
+                 <li><code>city.name</code> City name</li>
+                 <li>
+                    <code>city.coord</code>
+                    <ul>
+                       <li><code>city.coord.lat</code> City geo location, latitude</li>
+                       <li><code>city.coord.lon</code> City geo location, longitude</li>
+                    </ul>
+                 </li>
+              </ul>
+           </li>
+           <li><code>country</code> Country code (GB, JP etc.)</li>
+           <li><code>population</code> City population</li>
+           <li><code>timezone</code> Shift in seconds from UTC</li>
+           <li><code>cod</code> Internal parameter</li>
+           <li><code>message</code> Internal parameter</li>
+           <li>
+              <code>list</code>
+              <ul>
+                 <li><code>list.dt </code> Time of data forecasted</li>
+                 <li><code>list.sunrise</code> Sunrise time, Unix, UTC</li>
+                 <li><code>list.sunset</code> Sunset time, Unix, UTC</li>
+                 <li>
+                    <code>list.temp</code>
+                    <ul>
+                       <li><code>list.temp.day</code> Day temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.temp.min</code> Min daily temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.temp.max</code> Max daily temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.temp.night</code> Night temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.temp.eve</code> Evening temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.temp.morn</code> Morning temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                    </ul>
+                 </li>
+                 <li>
+                    <code>list.feels_like</code>
+                    <ul>
+                       <li><code>list.feels_like.day</code> Day temperature.This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.feels_like.night</code> Night temperature.This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.feels_like.eve</code> Evening temperature.This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                       <li><code>list.feels_like.morn</code> Morning temperature. This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.</li>
+                    </ul>
+                 </li>
+                 <li><code>list.pressure</code> Atmospheric pressure on the sea level, hPa</li>
+                 <li><code>list.humidity</code> Humidity, %</li>
+                 <li>
+                    <code>list.weather</code> (more info Weather condition codes)
+                    <ul>
+                       <li><code>list.weather.id</code> Weather condition id</li>
+                       <li><code>list.weather.main</code> Group of weather parameters (Rain, Snow, Extreme etc.)</li>
+                       <li><code>list.weather.description</code> Weather condition within the group. You can get the output in your language. <a href='#multi'>Learn more</a>.</li>
+                       <li><code>list.weather.icon</code> Weather icon id</li>
+                    </ul>
+                 </li>
+                 <li><code>list.speed</code> Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.</li>
+                 <li><code>list.deg</code> Wind direction, degrees (meteorological)</li>
+                 <li><code>list.clouds</code> Cloudiness, %</li>
+                 <li><code>list.rain</code> Precipitation volume, mm</li>
+                 <li><code>list.snow</code> Snow volume, mm</li>
+                 <li><code>list.cnt</code> Number of lines returned by this API call</li>
+              </ul>
+           </li>
+        </ul>
+        </section>
+        <section id="other">
+          <h2>Other features</h2>
+
+       <section id="format">
+          <h3>Format</h3>
+          <p>Data format. JSON format is used by default. To get data in XML format use <code>mode=xml</code>.</p>
+          <table class="material-table">
+             <tr>
+                <th colspan="3">Parameters</th>
+             </tr>
+             <tr>
+               <td><code>mode</code></td>
+               <td class="sub">optional</td>
+               <td>Data format. Possible values are: <code>json</code>, <code>xml</code>. If the <code>mode</code> parameter is empty the format is JSON by default.</td>
+             </tr>
+          </table>
+          <p class="sub-header">Examples of API calls</p>
+          <p>JSON</p>
+          <div class="response">
+             <div class="api">
+                <code>
+                   api.openweathermap.org/data/2.5/forecast/climate?q=London&cnt=3
+                </code>
+             </div>
+             <div class="content">
+                <pre>
+                   <code class="json">
+
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 6.2190697,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 290.57,
+        "min": 285.58,
+        "max": 290.57,
+        "night": 285.58,
+        "eve": 288.97,
+        "morn": 290.57
+      },
+      "feels_like": {
+        "day": 289.31,
+        "night": 284.51,
+        "eve": 288.2,
+        "morn": 289.31
+      },
+      "pressure": 1023,
+      "humidity": 61,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 1.8,
+      "deg": 26,
+      "clouds": 65
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 289.88,
+        "min": 284.76,
+        "max": 289.88,
+        "night": 287.59,
+        "eve": 288.9,
+        "morn": 284.76
+      },
+      "feels_like": {
+        "day": 286.61,
+        "night": 284.53,
+        "eve": 285.68,
+        "morn": 283.43
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "speed": 4.87,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 290.18,
+        "min": 287.89,
+        "max": 290.18,
+        "night": 289.03,
+        "eve": 289.95,
+        "morn": 287.89
+      },
+      "feels_like": {
+        "day": 287.21,
+        "night": 286,
+        "eve": 287.75,
+        "morn": 285.09
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 5.38,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                   </code>
+                </pre>
+             </div>
+          </div>
+          <p>XML</p>
+          <div class="response">
+             <div class="api">
+                <code>
+                   api.openweathermap.org/data/2.5/forecast/climate?q=London&mode=xml
+                </code>
+             </div>
+             <div class="content">
+                <pre>
+                   <code class="xml">
+&lt;weatherdata&gt;
+   &lt;location&gt;
+      &lt;name&gt;London&lt;/name&gt;
+      &lt;type /&gt;
+      &lt;country&gt;GB&lt;/country&gt;
+      &lt;timezone&gt;3600&lt;/timezone&gt;
+      &lt;location altitude="0" latitude="51.5085" longitude="-0.1257" geobase="geonames" geobaseid="2643743" /&gt;
+   &lt;/location&gt;
+   &lt;credit /&gt;
+   &lt;meta&gt;
+      &lt;lastupdate /&gt;
+      &lt;calctime&gt;0&lt;/calctime&gt;
+      &lt;nextupdate /&gt;
+   &lt;/meta&gt;
+   &lt;sun rise="2020-09-10T05:28:05" set="2020-09-10T18:27:00" /&gt;
+   &lt;forecast&gt;
+      &lt;time day="2020-09-10"&gt;
+         &lt;sun rise="2020-09-10T05:28:05" set="2020-09-10T18:27:00" /&gt;
+         &lt;symbol number="803" name="broken clouds" var="04d" /&gt;
+         &lt;precipitation /&gt;
+         &lt;windDirection deg="26" code="NNE" name="North-northeast" /&gt;
+         &lt;windSpeed mps="1.8" unit="m/s" name="Light breeze" /&gt;
+         &lt;temperature day="290.57" min="285.58" max="290.57" night="285.58" eve="288.97" morn="290.57" unit="kelvin" /&gt;
+         &lt;feels_like day="289.31" night="284.51" eve="288.2" morn="289.31" unit="kelvin" /&gt;
+         &lt;pressure unit="hPa" value="1023" /&gt;
+         &lt;humidity value="61" unit="%" /&gt;
+         &lt;clouds value="broken clouds" all="65" unit="%" /&gt;
+      &lt;/time&gt;
+      &lt;time day="2020-09-11"&gt;
+         &lt;sun rise="2020-09-11T05:29:40" set="2020-09-11T18:24:42" /&gt;
+         &lt;symbol number="801" name="few clouds" var="02d" /&gt;
+         &lt;precipitation /&gt;
+         &lt;windDirection deg="243" code="WSW" name="West-southwest" /&gt;
+         &lt;windSpeed mps="4.87" unit="m/s" name="Gentle Breeze" /&gt;
+         &lt;temperature day="289.88" min="284.76" max="289.88" night="287.59" eve="288.9" morn="284.76" unit="kelvin" /&gt;
+         &lt;feels_like day="286.61" night="284.53" eve="285.68" morn="283.43" unit="kelvin" /&gt;
+         &lt;pressure unit="hPa" value="1017" /&gt;
+         &lt;humidity value="66" unit="%" /&gt;
+         &lt;clouds value="few clouds" all="18" unit="%" /&gt;
+      &lt;/time&gt;
+      &lt;time day="2020-09-12"&gt;
+         &lt;sun rise="2020-09-12T05:31:15" set="2020-09-12T18:22:23" /&gt;
+         &lt;symbol number="803" name="broken clouds" var="04d" /&gt;
+         &lt;precipitation /&gt;
+         &lt;windDirection deg="245" code="WSW" name="West-southwest" /&gt;
+         &lt;windSpeed mps="5.38" unit="m/s" name="Gentle Breeze" /&gt;
+         &lt;temperature day="290.18" min="287.89" max="290.18" night="289.03" eve="289.95" morn="287.89" unit="kelvin" /&gt;
+         &lt;feels_like day="287.21" night="286" eve="287.75" morn="285.09" unit="kelvin" /&gt;
+         &lt;pressure unit="hPa" value="1020" /&gt;
+         &lt;humidity value="75" unit="%" /&gt;
+         &lt;clouds value="broken clouds" all="59" unit="%" /&gt;
+      &lt;/time&gt;
+   &lt;/forecast&gt;
+&lt;/weatherdata&gt;
+                   </code>
+                </pre>
+             </div>
+          </div>
+       </section>
+
+       <section id="limit">
+          <h3>Limitation of result</h3>
+          <p>To limit the number of returned days please use <code>cnt</code> parameter.</p>
+          <table class="material-table">
+             <tr>
+                <th colspan="3">Parameters</th>
+             </tr>
+             <tr>
+                <td><code>cnt</code></td>
+                <td class="sub"></td>
+                <td>A number of days, which will be returned in the API response</td>
+             </tr>
+
+          </table>
+          <p class="sub-header">Example of API call</p>
+          <div class="response">
+             <div class="api">
+                <code>
+                   http://api.openweathermap.org/data/2.5/forecast/climate?q=London&cnt=3
+                </code>
+             </div>
+             <div class="content">
+                <pre>
+                   <code class="json">
+
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 5.3919103,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 289.64,
+        "min": 285.58,
+        "max": 289.64,
+        "night": 285.58,
+        "eve": 288.97,
+        "morn": 289.64
+      },
+      "feels_like": {
+        "day": 288.12,
+        "night": 284.51,
+        "eve": 288.2,
+        "morn": 288.12
+      },
+      "pressure": 1023,
+      "humidity": 63,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 2.01,
+      "deg": 23,
+      "clouds": 72
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 289.88,
+        "min": 284.76,
+        "max": 289.88,
+        "night": 287.59,
+        "eve": 288.9,
+        "morn": 284.76
+      },
+      "feels_like": {
+        "day": 286.61,
+        "night": 284.53,
+        "eve": 285.68,
+        "morn": 283.43
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "speed": 4.87,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 290.18,
+        "min": 287.89,
+        "max": 290.18,
+        "night": 289.03,
+        "eve": 289.95,
+        "morn": 287.89
+      },
+      "feels_like": {
+        "day": 287.21,
+        "night": 286,
+        "eve": 287.75,
+        "morn": 285.09
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 5.38,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                   </code>
+                </pre>
+             </div>
+          </div>
+       </section>
+          <section id="data">
+             <h3>Units of measurement</h3>
+             <p><code>standard</code>, <code>metric</code>, and <code>imperial</code> units are available. <a href="../weather-data.html"> List of all API parameters with available units</a>.</p>
+
+             <table class="material-table">
+                <tr>
+                   <th colspan="3">Parameters</th>
+                </tr>
+                 <tr>
+                   <td><code>units</code></td>
+                   <td class="sub">optional</td>
+                   <td>Units of measurement. <code>standard</code>, <code>metric</code> and <code>imperial</code> units are available. If you do not use the <code>units</code> parameter, <code>standard</code> units will be applied by default.</td>
+                </tr>
+             </table>
+
+             <div class="info-board info-board-blue">
+              Temperature is available in Fahrenheit, Celsius and Kelvin units.
+              <p>Wind speed is available in miles/hour and meter/sec.</p>
+              <ul>
+                 <li>For temperature in Fahrenheit and wind speed in miles/hour, use <code>units=imperial</code></li>
+                 <li>For temperature in Celsius and wind speed in meter/sec, use <code>units=metric</code></li>
+                 <li>Temperature in Kelvin and wind speed in meter/sec is used by default, so there is no need to use the units parameter in the API call if you want this</li>
+              </ul>
+           </div>
+
+             <p class="sub-header">Examples of API calls:</p>
+
+             <p>Standard</p>
+             <div class="response">
+                <div class="api">
+                   <code>
+                      api.openweathermap.org/data/2.5/forecast/climate?q=London
+                   </code>
+                </div>
+                <div class="content">
+                   <pre>
+                      <code class="json">
+
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 5.3919103,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 289.64,
+        "min": 285.58,
+        "max": 289.64,
+        "night": 285.58,
+        "eve": 288.97,
+        "morn": 289.64
+      },
+      "feels_like": {
+        "day": 288.12,
+        "night": 284.51,
+        "eve": 288.2,
+        "morn": 288.12
+      },
+      "pressure": 1023,
+      "humidity": 63,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 2.01,
+      "deg": 23,
+      "clouds": 72
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 289.88,
+        "min": 284.76,
+        "max": 289.88,
+        "night": 287.59,
+        "eve": 288.9,
+        "morn": 284.76
+      },
+      "feels_like": {
+        "day": 286.61,
+        "night": 284.53,
+        "eve": 285.68,
+        "morn": 283.43
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "speed": 4.87,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 290.18,
+        "min": 287.89,
+        "max": 290.18,
+        "night": 289.03,
+        "eve": 289.95,
+        "morn": 287.89
+      },
+      "feels_like": {
+        "day": 287.21,
+        "night": 286,
+        "eve": 287.75,
+        "morn": 285.09
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 5.38,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                      </code>
+                   </pre>
+                </div>
+             </div>
+
+             <p>Metric</p>
+             <div class="response">
+                <div class="api">
+                   <code>
+                      api.openweathermap.org/data/2.5/forecast/climate?q=London&units=metric
+                   </code>
+                </div>
+                <div class="content">
+                   <pre>
+                      <code class="json">
+
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 0.0750006,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 16.49,
+        "min": 12.43,
+        "max": 16.49,
+        "night": 12.43,
+        "eve": 15.82,
+        "morn": 16.49
+      },
+      "feels_like": {
+        "day": 14.97,
+        "night": 11.36,
+        "eve": 15.05,
+        "morn": 14.97
+      },
+      "pressure": 1023,
+      "humidity": 63,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 2.01,
+      "deg": 23,
+      "clouds": 72
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 16.73,
+        "min": 11.61,
+        "max": 16.73,
+        "night": 14.44,
+        "eve": 15.75,
+        "morn": 11.61
+      },
+      "feels_like": {
+        "day": 13.46,
+        "night": 11.38,
+        "eve": 12.53,
+        "morn": 10.28
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "speed": 4.87,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 17.03,
+        "min": 14.74,
+        "max": 17.03,
+        "night": 15.88,
+        "eve": 16.8,
+        "morn": 14.74
+      },
+      "feels_like": {
+        "day": 14.06,
+        "night": 12.85,
+        "eve": 14.6,
+        "morn": 11.94
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 5.38,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                      </code>
+                   </pre>
+                </div>
+             </div>
+
+             <p>Imperial</p>
+             <div class="response">
+                <div class="api">
+                   <code>
+                      api.openweathermap.org/data/2.5/forecast/climate?q=London&units=imperial
+                   </code>
+                </div>
+                <div class="content">
+                   <pre>
+                      <code class="json">
+
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 0.0771345,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 61.68,
+        "min": 54.37,
+        "max": 61.68,
+        "night": 54.37,
+        "eve": 60.48,
+        "morn": 61.68
+      },
+      "feels_like": {
+        "day": 58.95,
+        "night": 52.45,
+        "eve": 59.09,
+        "morn": 58.95
+      },
+      "pressure": 1023,
+      "humidity": 63,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 4.5,
+      "deg": 23,
+      "clouds": 72
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 62.11,
+        "min": 52.9,
+        "max": 62.11,
+        "night": 57.99,
+        "eve": 60.35,
+        "morn": 52.9
+      },
+      "feels_like": {
+        "day": 56.23,
+        "night": 52.48,
+        "eve": 54.55,
+        "morn": 50.5
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "speed": 10.89,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 62.65,
+        "min": 58.53,
+        "max": 62.65,
+        "night": 60.58,
+        "eve": 62.24,
+        "morn": 58.53
+      },
+      "feels_like": {
+        "day": 57.31,
+        "night": 55.13,
+        "eve": 58.28,
+        "morn": 53.49
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "speed": 12.03,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                      </code>
+                   </pre>
+                </div>
+             </div>
+          </section>
+       <section id="multi">
+          <h3>Multilingual support</h3>
+
+          <p>You can use <code>lang</code> parameter to get the output in your language.</p>
+          <p>Translation is applied for the <code>city name</code> and <code>description</code> fields.</p>
+
+          <p class="sub-header">API call</p>
+          <div class="api">
+             <code>http://api.openweathermap.org/data/2.5/forecast/climate?id=524901&lang={lang}</code>
+          </div>
+          <table class="material-table">
+             <tr>
+                <th colspan="3">Parameters</th>
+             </tr>
+             <tr>
+               <td><code>lang</code></td>
+               <td class="sub">optional</td>
+               <td>Language code</td>
+             </tr>
+          </table>
+
+       <p class="sub-header">Example of API call</p>
+       <div class="response">
+          <div class="api">
+             <code>
+                http://api.openweathermap.org/data/2.5/forecast/climate?id=524901&lang=zh_cn
+             </code>
+          </div>
+          <div class="content">
+             <pre>
+                <code class="json">
+{
+  "city": {
+    "id": 2643743,
+    "name": "London",
+    "coord": {
+      "lon": -0.1257,
+      "lat": 51.5085
+    },
+    "country": "GB",
+    "population": 1000000,
+    "timezone": 3600
+  },
+  "code": "200",
+  "message": 5.8265173,
+  "cnt": 3,
+  "list": [
+    {
+      "dt": 1599735600,
+      "sunrise": 1599715685,
+      "sunset": 1599762420,
+      "temp": {
+        "day": 63.36,
+        "min": 54.37,
+        "max": 63.36,
+        "night": 54.37,
+        "eve": 60.48,
+        "morn": 63.36
+      },
+      "feels_like": {
+        "day": 61.09,
+        "night": 52.45,
+        "eve": 59.09,
+        "morn": 61.09
+      },
+      "pressure": 1023,
+      "humidity": 61,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "多云",
+          "icon": "04d"
+        }
+      ],
+      "speed": 4.03,
+      "deg": 26,
+      "clouds": 65
+    },
+    {
+      "dt": 1599822000,
+      "sunrise": 1599802180,
+      "sunset": 1599848682,
+      "temp": {
+        "day": 62.11,
+        "min": 52.9,
+        "max": 62.11,
+        "night": 57.99,
+        "eve": 60.35,
+        "morn": 52.9
+      },
+      "feels_like": {
+        "day": 56.23,
+        "night": 52.48,
+        "eve": 54.55,
+        "morn": 50.5
+      },
+      "pressure": 1017,
+      "humidity": 66,
+      "weather": [
+        {
+          "id": 801,
+          "main": "Clouds",
+          "description": "晴，少云",
+          "icon": "02d"
+        }
+      ],
+      "speed": 10.89,
+      "deg": 243,
+      "clouds": 18
+    },
+    {
+      "dt": 1599908400,
+      "sunrise": 1599888675,
+      "sunset": 1599934943,
+      "temp": {
+        "day": 62.65,
+        "min": 58.53,
+        "max": 62.65,
+        "night": 60.58,
+        "eve": 62.24,
+        "morn": 58.53
+      },
+      "feels_like": {
+        "day": 57.31,
+        "night": 55.13,
+        "eve": 58.28,
+        "morn": 53.49
+      },
+      "pressure": 1020,
+      "humidity": 75,
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "多云",
+          "icon": "04d"
+        }
+      ],
+      "speed": 12.03,
+      "deg": 245,
+      "clouds": 59
+    }
+  ]
+}
+                </code>
+             </pre>
+          </div>
+       </div>
+
+
+          <p>We support the following languages that you can use with the corresponded lang values:</p>
+
+       <ul class="docs-list">
+                <li><code>af</code> Afrikaans</li>
+                <li><code>al</code> Albanian</li>
+                <li><code>ar</code> Arabic</li>
+                <li><code>az</code> Azerbaijani</li>
+                <li><code>bg</code> Bulgarian</li>
+                <li><code>ca</code> Catalan</li>
+                <li><code>cz</code> Czech</li>
+                <li><code>da</code> Danish</li>
+                <li><code>de</code> German</li>
+                <li><code>el</code> Greek</li>
+                <li><code>en</code> English</li>
+                <li><code>eu</code> Basque</li>
+                <li><code>fa</code> Persian (Farsi)</li>
+                <li><code>fi</code> Finnish</li>
+                <li><code>fr</code> French</li>
+                <li><code>gl</code> Galician</li>
+                <li><code>he</code> Hebrew</li>
+                <li><code>hi</code> Hindi</li>
+                <li><code>hr</code> Croatian</li>
+                <li><code>hu</code> Hungarian</li>
+                <li><code>id</code> Indonesian</li>
+                <li><code>it</code> Italian</li>
+                <li><code>ja</code> Japanese</li>
+                <li><code>kr</code> Korean</li>
+                <li><code>la</code> Latvian</li>
+                <li><code>lt</code> Lithuanian</li>
+                <li><code>mk</code> Macedonian</li>
+                <li><code>no</code> Norwegian</li>
+                <li><code>nl</code> Dutch</li>
+                <li><code>pl</code> Polish</li>
+                <li><code>pt</code> Portuguese</li>
+                <li><code>pt_br</code> Português Brasil</li>
+                <li><code>ro</code> Romanian</li>
+                <li><code>ru</code> Russian</li>
+                <li><code>sv, se</code>	Swedish</li>
+                <li><code>sk</code> Slovak</li>
+                <li><code>sl</code> Slovenian</li>
+                <li><code>sp, es</code>	Spanish</li>
+                <li><code>sr</code> Serbian</li>
+                <li><code>th</code> Thai</li>
+                <li><code>tr</code> Turkish</li>
+                <li><code>ua, uk</code> Ukrainian</li>
+                <li><code>vi</code> Vietnamese</li>
+                <li><code>zh_cn</code> Chinese Simplified</li>
+                <li><code>zh_tw</code> Chinese Traditional</li>
+                <li><code>zu</code> Zulu</li>
+             </ul>
+          </section>
+       <section id="call">
+          <h3>Call back function for JavaScript code</h3>
+
+         <p>To use JavaScript code you can transfer <code>callback</code> functionName to JSONP callback. <br>
+          <p class="sub-header">Example of API call</p>
+          <div class="response">
+             <div class="api">
+                <code>
+                   api.openweathermap.org/data/2.5/forecast/climate?q=London,uk&callback=test
+                </code>
+             </div>
+             <div class="content">
+                <pre>
+                   <code class="json">
+test(
+{
+ "coord":{
+    "lon":-0.13,
+    "lat":51.51
+ },
+ "weather":[
+    {
+       "id":300,
+       "main":"Drizzle",
+       "description":"light intensity drizzle",
+       "icon":"09d"
+    }
+ ],
+ "base":"stations",
+ "main":{
+    "temp":280.32,
+    "pressure":1012,
+    "humidity":81,
+    "temp_min":279.15,
+    "temp_max":281.15
+ },
+ "visibility":10000,
+ "wind":{
+    "speed":4.1,
+    "deg":80
+ },
+ "clouds":{
+    "all":90
+ },
+ "dt":1485789600,
+ "sys":{
+    "type":1,
+    "id":5091,
+    "message":0.0103,
+    "country":"GB",
+    "sunrise":1485762037,
+    "sunset":1485794875
+ },
+ "id":2643743,
+ "name":"London",
+ "cod":200
+}
+)
+                   </code>
+                </pre>
+             </div>
+          </div>
+         </section>
+       </section>
+     </div>
+   </div>
+</div>     
+                        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- OWM long bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="1070308379"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                    </div>
+                </div>                
+            </div>
+                                    
+        </main>
+        <div id="stick-footer-panel"></div>
+                    <div class="footer-website" onClick="toggleFooterSection(event)">
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Product Collections</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../api.html#current">Current and Forecast APIs</a></li>
+            <li><a href="../api.html#history">Historical Weather Data</a></li>
+            <li><a href="../api.html#maps">Weather Maps</a></li>
+            <li><a href="../widgets-constructor">Widgets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading">Subscription</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../appid.html">How to start</a></li>
+            <li><a href="../price.html">Pricing</a></li>
+            <li><a href="https://home.openweathermap.org/users/sign_up">Subscribe for free</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading"><a href="../about-us">About us</a></p>
+        <div class="section-content">
+          <p>OpenWeather is a team of IT experts and data scientists that has been practising deep weather data science since 2014. For each point on the globe, OpenWeather provides historical, current and forecasted weather data via light-speed APIs. Headquarters in London, UK.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Technologies</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../technology">Our technology</a></li>
+            <li><a href="../accuracy-and-quality.html">Accuracy and quality of weather data</a></li>
+            <li><a href="../stations.html">Connect your weather station</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section">
+        <p class="section-heading">Terms & Conditions</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf" target="_blank">Terms and conditions of sale</a></li>
+            <li><a href="https://openweather.co.uk/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf" target="_blank">Website	terms	and	conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section not-foldable">
+        <p class="section-heading" style="visibility: hidden">Contact us</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/team" target="_blank">Our team</a></li>
+            <li><a href="https://openweather.co.uk/blog/category/weather" target="_blank">Blog</a></li>
+            <li><a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support center</a></li>
+            <li><a href="mailto:info@openweathermap.org">info@openweathermap.org</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+        <p style="margin: 0;">Download OpenWeather app</p>
+        <div style="display: flex; flex-direction: row;">
+            <a style="margin-left: -10px;" href="https://apps.apple.com/gb/app/openweather/id1535923697" target="_blank">
+                <img style="height:60px; padding:10px;" src="../themes/openweathermap/assets/img/mobile_app/Download_on_the_App_Store_Badge_US-UK.svg" />
+            </a>  
+            <a href="https://play.google.com/store/apps/details?id=uk.co.openweather" target="_blank">
+              <img style="height:60px;"  alt='Get it on Google Play' src="../themes/openweathermap/assets/img/mobile_app/google-play-badge.png"/>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="horizontal-section">
+      <span>© 2012 — 2021 OpenWeather ® All rights reserved.</span>
+      <div class="social">
+        <a href="https://www.facebook.com/groups/270748973021342" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_facebook.png"/></a>
+        <a href="https://twitter.com/OpenWeatherMap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_twitter.png"/></a>
+        <a href="https://www.linkedin.com/company/9816754" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"/></a>
+        <a href="https://medium.com/@openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_medium.png"/></a>
+        <a href="https://t.me/openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_telegram.png"/></a>
+        <a href="https://github.com/search?q=openweathermap&amp;ref=cmdform" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_github.png"/></a>
+      </div>
+    </div>
+  </div>   
+                            <script src='../themes/openweathermap/assets/js/documentation.3berawer2323dAD124.js'></script>   
+            <link rel="stylesheet" href="../themes/openweathermap/assets/css/highlight.default.min.css">
+<script src="../themes/openweathermap/assets/js/highlight.min.js"></script>         
+        <script src="../../cdn.ravenjs.com/3.6.1/raven.min.js"></script>
+<script>Raven.config('http://66df88eb63e94f27964b84031e49b358@sentry.owm.io/16').install()</script>  
+        <script src='../themes/openweathermap/assets/js/bundle_owm_postload.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/stick_footer_panel.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/postload_scripts_js.js'></script>           
+    </body>
+
+<!-- Mirrored from openweathermap.org/api/forecast30 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:20 GMT -->
+</html>

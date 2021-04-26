@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang='en'>
+    
+<!-- Mirrored from openweathermap.org/api/road-risk by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <!-- smart banner apple -->
+        <meta name="apple-itunes-app" content="app-id=1535923697">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+    <meta  http-equiv=Expires content="Tue, Sep 20 2018 15:27:22 GMT">
+    <meta http-equiv="Last-Modified" content="Tue, Sep 20 2018 15:27:22 GMT">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="weather, world, Openstreetmap, forecast, Openweather, current" >
+    <meta name="description" content="" >
+    <meta name="author" content="OpenWeatherMap.org">
+    <meta name="domain" content="OpenWeatherMap.org" >        
+    <meta name="p:domain_verify" content="34fe229eab8562dca90f4a5962ff80a9"/>
+    <meta property="title" content="Road Risk" />                <link rel="shortcut icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/favicon.ico" />
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_60x60.png" sizes="60x60" type="image/png">   
+        <title>Road Risk - OpenWeatherMap</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31601618-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-31601618-1');
+</script>        
+        <script src="../../code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="../../cdn.polyfill.io/v2/polyfill.min9e24.js?features=Array.from,Array.assign,fetch&amp;flags=always,gated"></script>
+<script src='../themes/openweathermap/assets/js/bundle_owm_preload.c31872127471c475ade1.js'></script>            
+        <link href='../themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css' rel="stylesheet"> 
+<link href='../themes/openweathermap/assets/css/stick_footer_panel.c31872127471c475ade1.css' rel="stylesheet">
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">        <link href='../themes/openweathermap/assets/css/new_owm_styles.522b0c2ecd513644.css' rel="stylesheet"> 
+
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">    
+        
+    </head>
+    <body class="body-orange" onClick="closePopUps()">
+                    <style>
+    .banner_stripe {
+        width: 100%; 
+        height: 80px; 
+        background-color: #1c1c1e;
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        font-family: Roboto,sans-serif;
+        position: relative;
+    }
+
+    .banner_icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 15px;
+        background-size: 64px 64px;
+        margin: 8px;
+    }
+    .google_button {
+        /* background-color: #3e83f8; */
+        background-color: #2196f3;
+        height: 36px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+        box-sizing: border-box;
+        color: #fff !important;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        line-height: 24px;
+        margin: 6px;
+        min-width: 40px;
+        outline: 0;
+        padding: 10px 14px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .google_button:hover, .google_button:focus {
+        text-decoration: none;
+    }
+    .smartbanner__exit {
+        position: absolute;
+        top: calc(50% - 6px);
+        left: 12px;
+        display: block;
+        margin: 0;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        text-align: center; 
+        }
+    .smartbanner__exit::before, .smartbanner__exit::after {
+      position: absolute;
+      width: 1px;
+      height: 12px;
+      content: ' ';
+      background: #767676;
+      }
+    .smartbanner__exit::before {
+      transform: rotate(45deg); }
+    .smartbanner__exit::after {
+      transform: rotate(-45deg); }
+
+</style>
+
+<div id="banner_android" class="banner_stripe">
+    <div style="display: flex; flex-direction: row; align-items: center; margin-left: 18px;">
+        <a class="smartbanner__exit" onClick="bannerClose()"></a>
+        <img src="../themes/openweathermap/assets/img/mobile_app/android_icon.png" class="banner_icon" />
+        <div>
+            <p style="font-size: 14px; color: #ffffff; margin: 0;">OpenWeather</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">OpenWeather Ltd.</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">GET - on Google Play</p>
+        </div>
+    </div>
+    <a class="google_button" style="font-size: 16px;" href="https://play.google.com/store/apps/details?id=uk.co.openweather" onclick="ga('send', 'event', 'app', 'click', 'androidTopBanner');">VIEW</a>
+</div>
+
+<script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function setCookie (name, value) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (5 * 1000 * 60 * 60 * 24))
+        document.cookie = name + '=' + escape(value) + '; expires=' + expires.toGMTString() + '; path=/'
+      }
+      
+    function bannerClose() {
+        document.getElementById("banner_android").style.display = "none";
+        setCookie("owm_banner_android_closed", true)
+    }
+    
+    document.onload = function() {
+       if ((document.cookie.indexOf("owm_banner_android_closed") === -1)  && /Android/i.test(window.navigator.userAgent)) {
+           document.getElementById("banner_android").style.display = 'flex';
+        } 
+    }()
+    
+    
+</script>   
+                <ul id="header-website" onClick="toggleMenu(event)">
+      <li class="logo">
+        <a href="../index.html">
+          <img src="../themes/openweathermap/assets/img/logo_white_cropped.png">
+        </a>
+      </li>
+      <li class="hamburger">
+        <img src="../themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"/>
+      </li>
+      <li>
+        <form role="search" id="nav-search-form" action="https://openweathermap.org/find" method="get">
+            <input type="text" id="q" name="q"  placeholder="Weather in your city">
+            <input type="submit" style="display:none;">
+        </form>
+      </li>
+      
+      <li>
+        <a href="../guide.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Guide</a>
+      </li>
+      <li>
+        <a href="../api.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'api']);">API</a>
+      </li>
+      <li>
+        <a href="../price.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'price']);">Pricing</a>
+      </li>
+      <li>
+        <a href="../weathermap.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Maps</a>
+      </li>
+      <li>
+        <a href="../our-initiatives.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Our Initiatives</a>
+      </li>
+      <li>
+        <a href="../examples.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'examples']);">Partners</a>
+      </li>
+      <li>
+        <a href="https://openweather.co.uk/blog/category/weather" target="_blank" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'news']);">Blog</a>
+      </li>
+      <!-- <li>
+        <a href="/about-us" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">About us</a>
+      </li> -->
+      <li>
+        <a href="https://home.openweathermap.org/marketplace" class="market-place" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'marketplace']);" target="_blank">Marketplace</a>
+      </li>
+                <li class="user-sign-in" id="sign_in"><a href="../home/sign_in.html">Sign in</a></li>
+            <li class="support-item">
+        <a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support</a>
+      </li>
+    </ul>
+<!-- Invisible header to take up the height -->
+<!-- <div style="height: 48pt; width: 100%; visibility: hidden;"></div> --> 
+        <div id="notes_block"></div>
+        <main class="wrapper"> 
+                            <div class="topic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                                    <h1 class="breadcrumb-title">Road Risk API</h1>
+                            </div>
+            <div class="col-sm-5">
+                <ol class="breadcrumb pull-right hidden-xs">
+                    <li><a href="../index.html">Home</a></li>
+                                            <li class="active"><a href="../api.html">API</a></li>
+                                                            
+                                                                        <li class="breadcrumb__leaf">Road Risk API</li>
+                                                            </ol>
+            </div>
+        </div>
+    </div>   
+</div>       
+                                    <!-- proofreading 29 June 2020 -->
+<div class="container documentation">
+   <div class="doc-container">
+     <div>
+       <nav>
+       <ul>
+          <li><a href="#concept">Road Risk API concept</a></li>
+          <li><a href="#how">How to request Road Risk API</a></li>
+          <li><a href="#descr">Road Risk API response</a></li>
+          <ul>
+          <li><a href="#descr">Example of the API response</a></li>
+            <li><a href="#fields">Fields in API response</a></li>
+            </ul>
+            <li><a href="#listsource">List of national weather warning sources</a></li>
+       </ul>
+    </nav>
+       <div class="side-banner">
+         <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- Skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="6999090776"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>       </div>
+     </div>
+     <div>
+     <section id="concept">
+     <h2>Road Risk API concept</h2>
+       <p class=lead> Road Risk API provides weather data and national alerts at the point of destination and along a route</p>
+       <p>Road Risk API responds weather data with national alerts along a route that is set up as a massive of points where each point is a pair of latitude, longitude and time. For each point, the API returns air temperature, wind, precipitation, visibility, pressure, humidity, dew point. Active national alerts include alert description, national agency name, and the event hazardous level. </p>
+
+<p>Weather forecast is available for 5 days with minute granularity for the 2 hours from the current moment and hourly granularity for the rest. Historical data is accessible for 5 recent days. 
+</p>
+<div class="text-center"><a class="btn_like btn-orange" href="mailto:info@openweathermap.org" target="_blank">Get access</a>
+            </div>
+            </section>
+        <!-- <section id="about">
+          <h2>Features of Road Risk API</h2>
+          <ol>
+             <li><p class=lead>Easy-to-work API</p>
+             <p>How it works:</p>
+             <ul>
+             <li><p>You send the coordinates of your track and time for each point of the track via POST request.</p>
+             </li>
+             <li><p>Road Risk API returns the dataset with weather data and active weather alerts for each point of your track and the specified time.</p></li>
+             </ul>
+             </li>
+             <li><p class=lead>All essential weather data and weather alerts</p>
+             <p>Besides main weather parameters, such as temperature, precipitation, humidity, dew point and wind, you will get all active government weather alerts for each point of your track.</p>
+             </li>
+             <li><p class=lead>Current, forecasted and historical weather data</p>
+             <p>Road Risk API allows requesting current, forecasted and historical data. You can request the data from up to 5 days in the past to up to 5 days in the future from the current time. </p>
+             </li>
+             <li><p class=lead>High data accuracy and no strict limitations</p>
+             <p>Weather data are available for any point of the globe and any length of the track (there is no limit for a number of points in the track).</p>
+             </li>
+          </ol>
+          <br>
+          <p class=lead align=center>To receive information on price and access the data, please contact us<p>
+          <div class="text-center"><a class="btn_like btn-orange" href="mailto:info@openweathermap.org" target="_blank">Get access</a>
+            </div>
+               </section> -->
+       <section id="how"> 
+       <h2>How to request Road Risk API</h2>
+<!--         <section id="get">
+       <h3>GET request</h3>
+       <p class="sub-header">API call</p>
+       <div class="api">
+          <code>http://mesos11.owm.io:1332/alerts/path?points={lat_1,lon_1,time_1;lat_2,lon_2,time_2;...lat_N,lon_N,time_N}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+       </div>
+       <table class="material-table">
+          <tr>
+    <th colspan="3">Parameters</th>
+          </tr>
+          <tr>
+             <td><code class="nowrap">lat</code></td>
+             <td class="sub">required</td>
+             <td>Geographical coordinates (latitude)</td>
+          </tr>
+          <tr>
+             <td><code class="nowrap">lon</code></td>
+             <td class="sub">required</td>
+             <td>Geographical coordinates (longitude)</td>
+          </tr>
+          <tr>
+             <td><code class="nowrap">appid</code></td>
+             <td class="sub">required</td>
+             <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+          </tr>
+       </table>
+       <p class="sub-header">Example of API call</p>
+       <div class="api example">
+          <code>http://mesos11.owm.io:1332/alerts/path?points=-88.81,30.68,1602595714;-88.63,30.70,1602592114;-88.53,30.72,1602588514&appid=<a href="https://home.openweathermap.org/api_keys">{API key}</a></code>
+       </div>
+       </section> -->
+      <p>Method: <code>POST</code></p>
+      <!--  <p class="sub-header">Method of the request</p>
+      <div class="api">
+                 <code>POST</code>
+              </div> -->
+        <p>Header: <code>Content-Type: application/json</code></p>
+       <!-- <p class="sub-header">Header</p>
+       <div class="api">
+                  <code>Content-Type: application/json</code>
+               </div> -->
+        <p class="sub-header">API call</p>
+        <div class="api">
+                  <code>https://api.openweathermap.org/data/2.5/roadrisk?appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+               </div>
+        <table class="material-table">
+                  <tr>
+            <th colspan="3">Parameters</th>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">lat</code></td>
+                     <td class="sub">required</td>
+                     <td>Geographical coordinates (latitude) of the point from the specified track</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">lon</code></td>
+                     <td class="sub">required</td>
+                     <td>Geographical coordinates (longitude) of the point from the specified track</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">dt</code></td>
+                     <td class="sub">required</td>
+                     <td>Date and time for each point of the specified track
+                     <p>Unix time</p></td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">appid</code></td>
+                     <td class="sub">required</td>
+                     <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+                  </tr>
+               </table>
+               <div class="info-board info-board-orange">
+                  Please note that you can set up the date <b>not earlier than 5 days</b> from the current time and <b>not later than 5 days</b> from the current time.
+               </div>
+                 <div class="response open">
+             <div class="api">Example of the request body</div>
+             <div class="content">
+                <pre>
+                   <code class="json">
+{ 
+  "roadrisk": [
+    {
+      "lat": 30.680439786468128,
+      "lon": -88.81896972656251,
+      "dt": 1602702000
+    },
+    {
+      "lat": 30.56699087315334,
+      "lon": -89.44519042968751,
+      "dt": 1602702000
+    }
+  ]
+}
+                   </code>
+                </pre>
+             </div>
+          </div>
+       
+    </section>      
+       <section id="descr">
+       <h2>Road Risk API response</h2>
+       
+          <div class="response open">
+             <div class="api">Example of the API response</div>
+             <div class="content">
+                <pre>
+                   <code class="json">
+[
+  {
+    "dt": 1602702000,
+    "coord": [
+      7.27,
+      44.04
+    ],
+    "weather": {
+      "temp": 278.44,
+      "wind_speed": 2.27,
+      "wind_deg": 7,
+      "precipitation_intensity": 0.38,
+      "dew_point": 276.13
+    },
+    "alerts": [
+      {
+        "sender_name": "METEO-FRANCE",
+        "event": "Moderate thunderstorm warning",
+        "event_level": 2
+      }
+    ]
+  },
+  {
+    "dt": 1602702400,
+    "coord": [
+      7.37,
+      45.04
+    ],
+    "weather": {
+      "temp": 282.44,
+      "wind_speed": 1.84,
+      "wind_deg": 316,
+      "dew_point": 275.99
+    },
+    "alerts": [
+      
+    ]
+  }
+]
+                   </code>
+                </pre>
+             </div>
+          </div>
+     <section id="fields">
+       <p class="sub-header">Fields in API response</p>
+       <ul class="docs-list">
+          <li><code>dt</code> Date and time from the specified track</li>
+          <li><code>coord</code> Coordinates from the specified track</li>
+          <li><code>weather</code></li>
+          <ul>
+           <li><code>weather.temp</code> Temperature</li>
+           <li><code>weather.wind_speed</code> Wind speed. Units - metre/sec</li>
+           <li><code>weather.wind_deg</code> Wind direction, degrees (meteorological)</li>
+           <li><code>weather.precipitation_intensity</code> Intensity of precipitation, mm/hour</li>
+           <li><code>weather.visibility</code> Average visibility, metres</li>
+           <li><code>weather.dew_point</code> Atmospheric temperature (varying according to pressure and humidity) below which water droplets begin to condense and dew can form</li>
+          </ul>
+          <li><code>alerts</code></li>
+          <ul>
+          <li><code>alerts.sender_name</code> Name of the alert source</li>
+          <li><code>alerts.event</code> Alert event name</li>
+          <li><code>alerts.event_level</code> Level of the alert severity. 
+          Available values:
+          <ul><b>0</b> - Unknown<br>
+            <b>1</b> - Green (no awareness required)<br>
+            <b>2</b> - Yellow (potential danger)<br>
+            <b>3</b> - Orange (dangerous weather)<br>
+            <b>4</b> - Red (very dangerous weather)
+          </ul>
+          </li>
+          </ul>
+          
+       </ul>
+        </section>
+        
+          <section id="listsource" >
+          <h3>List of national weather warning sources</h3>
+          <table class="material-table">
+             <tr>
+                <th> Agency </th>
+                <th> Country </th>
+             </tr>
+             <tr>
+                <td> Afghanistan: National Disaster Management Authority</td>
+                <td> Afghanistan</td>
+             </tr>
+             <tr>
+                <td> Anguilla: Disaster Management Anguilla</td>
+                <td> Anguilla</td>
+             </tr>
+             <tr>
+                <td> Antigua and Barbuda: Meteorological Services</td>
+                <td> Antigua and Barbuda</td>
+             </tr>
+             <tr>
+                <td> Aruba: Meteorological Department of Aruba</td>
+                <td> Aruba</td>
+             </tr>
+             <tr>
+                <td> Austria: Central Institute for Meteorology and Geodynamics</td>
+                <td> Austria</td>
+             </tr>
+             <tr>
+                <td> Barbados: Department of Emergency Management</td>
+                <td> Barbados</td>
+             </tr>
+             <tr>
+                <td> Belgium: Royal Meteorological Institute</td>
+                <td> Belgium</td>
+             </tr>
+             <tr>
+                <td> Botswana: Department of Meteorological Services</td>
+                <td> Botswan</td>
+             </tr>
+             <tr>
+                <td> Canada: Alberta Emergency Management Agency (Government of Alberta, Ministry of Municipal Affairs)</td>
+                <td> Canada</td>
+             </tr>
+             <tr>
+                <td> Canada: Meteorological Service of Canada</td>
+                <td> Canada</td>
+             </tr>
+             <tr>
+                <td> Canada: Quebec Ministry of Public Safety</td>
+                <td> Canada</td>
+             </tr>
+             <!-- <tr>
+                <td> China: China Meteorological Administration</td>
+                <td> China</td>
+             </tr> -->
+             <tr>
+                <td> Croatia: State Hydrometeorological Institute (DHMZ)</td>
+                <td> Croatia</td>
+             </tr>
+             <tr>
+                <td> Cyprus: Meteorological Service</td>
+                <td> Cyprus</td>
+             </tr>
+             <tr>
+                <td> Czech Republic: Czech Hydrometeorological Institute</td>
+                <td> Czech Republic</td>
+             </tr>
+             <tr>
+                <td> Denmark: Danmarks Meteorologiske Instituts</td>
+                <td> Denmark</td>
+             </tr>
+             <tr>
+                <td> Federated States of Micronesia: Weather Service Office Chuuk</td>
+                <td> Federated States of Micronesia</td>
+             </tr>
+             <tr>
+                <td> Federated States of Micronesia: Weather Service Office Pohnpei</td>
+                <td> Federated States of Micronesia</td>
+             </tr>
+             <tr>
+                <td> Federated States of Micronesia: Weather Service Office Yap</td>
+                <td> Federated States of Micronesia</td>
+             </tr>
+             <tr>
+                <td> Finland: Finnish Meteorological Institute</td>
+                <td> Finland</td>
+             </tr>
+             <tr>
+                <td> France: Meteo-France</td>
+                <td> France</td>
+             </tr>
+             <tr>
+                <td> Germany: German Meteorological Office</td>
+                <td> Germany</td>
+             </tr>
+             <tr>
+                <td> Greece: Hellenic National Meteorological Service</td>
+                <td> Greece</td>
+             </tr>
+             <tr>
+                <td> Guyana: Hydrometeorological Service</td>
+                <td> Guyana</td>
+             </tr>
+             <tr>
+                <td> Hong Kong: Hong Kong Observatory</td>
+                <td> China/Hong Kong</td>
+             </tr>
+             <tr>
+                <td> Hungary: Hungarian Meteorological Service</td>
+                <td> Hungary</td>
+             </tr>
+             <tr>
+                <td> India: Meteorological Department</td>
+                <td> India</td>
+             </tr>
+             <tr>
+                <td> Indonesia: InaTEWS BMKG, Earthquake with magnitude 5.0 above</td>
+                <td> Indonesia</td>
+             </tr>
+             <tr>
+                <td> Ireland: Met Eireann - Irish Meteorological Service</td>
+                <td> Ireland</td>
+             </tr>
+             <tr>
+                <td> Israel: Meteorological Service</td>
+                <td> Israel</td>
+             </tr>
+             <tr>
+                <td> Italy: National Center of Meteorology and Aeronautical Climatology (CNMCA)</td>
+                <td> Italy</td>
+             </tr>
+             <tr>
+                <td> Jamaica: Meteorological Service</td>
+                <td> Jamaica</td>
+             </tr>
+             <tr>
+                <td> Kenya: Meteorological Department</td>
+                <td> Kenya</td>
+             </tr>
+             <tr>
+                <td> Kuwait: Meteorological Department</td>
+                <td> Kuwait</td>
+             </tr>
+             <tr>
+                <td> Lithuania: Lithuanian Hydrometeorological Service</td>
+                <td> Lithuani</td>
+             </tr>
+             <tr>
+                <td> Macedonia, the Former Yugoslav Republic of: Republic Hydrometeorological Organization</td>
+                <td> Macedonia</td>
+             </tr>
+             <tr>
+                <td> Madagascar: Operational Meteorology</td>
+                <td> Madagascar</td>
+             </tr>
+             <tr>
+                <td> Malta: Meteorological Office</td>
+                <td> Malta</td>
+             </tr>
+             <tr>
+                <td> Marshall Islands: Majuro Weather Service Office</td>
+                <td> Marshall Islands</td>
+             </tr>
+             <tr>
+                <td> Moldova: State Hydrometeorological Service</td>
+                <td> Moldova</td>
+             </tr>
+             <tr>
+                <td> Montenegro: Institute of Hydrometeorology and Seismology</td>
+                <td> Montenegro</td>
+             </tr>
+             <tr>
+                <td> Myanmar: Department of Meteorology and Hydrology</td>
+                <td> Myanmar</td>
+             </tr>
+             <tr>
+                <td> Netherlands: Royal Netherlands Meteorological Institute</td>
+                <td> Netherlands</td>
+             </tr>
+             <tr>
+                <td> New Zealand: GNS Science</td>
+                <td> New Zealand</td>
+             </tr>
+             <tr>
+                <td> New Zealand: MetService</td>
+                <td> New Zealand</td>
+             </tr>
+             <tr>
+                <td> Norway: Norwegian Meteorological Institute</td>
+                <td> Norway</td>
+             </tr>
+             <tr>
+                <td> Norway: Norwegian Water Resources and Energy Directorate</td>
+                <td> Norway</td>
+             </tr>
+             <tr>
+                <td> Palau: Weather Service Office</td>
+                <td> Palau</td>
+             </tr>
+             <tr>
+                <td> Papua New Guinea: Papua New Guinea Meteorological Service</td>
+                <td> Papua New Guinea</td>
+             </tr>
+             <tr>
+                <td> Paraguay: Directorate of Meteorology and Hydrology</td>
+                <td> Paraguay</td>
+             </tr>
+             <tr>
+                <td> Philippines: Philippine Atmospheric Geophysical and Astronomical Services Administration</td>
+                <td> Philippines</td>
+             </tr>
+             <tr>
+                <td> Poland: Institute of Meteorology and Water Management</td>
+                <td> Poland</td>
+             </tr>
+             <tr>
+                <td> Romania: National Meteorological Administration</td>
+                <td> Romania</td>
+             </tr>
+             <tr>
+                <td> Russian Federal Service for Hydrometeorology and Environmental Monitoring</td>
+                <td> Russia</td>
+             </tr>
+             <tr>
+                <td> Saint Lucia: Meteorological Services</td>
+                <td> Saint Lucia</td>
+             </tr>
+             <tr>
+                <td> Saint Vincent and the Grenadines: Meteorological Services</td>
+                <td> Saint Vincent and the Grenadines</td>
+             </tr>
+             <tr>
+                <td> Samoa: Meteorology Division</td>
+                <td> Samoa</td>
+             </tr>
+             <tr>
+                <td> Senegal: National Agency of Civil Aviation and Meteorology</td>
+                <td> Senegal</td>
+             </tr>
+             <tr>
+                <td> Slovakia: Slovak Hydrometeorological Institute</td>
+                <td> Slovakia</td>
+             </tr>
+             <tr>
+                <td> Slovenia: National Meteorological Service</td>
+                <td> Slovenia</td>
+             </tr>
+             <tr>
+                <td> Solomon Islands: Meteorological Service</td>
+                <td> Solomon Islands</td>
+             </tr>
+             <tr>
+                <td> South Africa: South Africa Weather Service</td>
+                <td> South Africa</td>
+             </tr>
+             <tr>
+                <td> Sweden: Swedish Meteorological and Hydrological Institute</td>
+                <td> Sweden</td>
+             </tr>
+             <tr>
+                <td> Tanzania: Meteorological Authority</td>
+                <td> Tanzania</td>
+             </tr>
+             <tr>
+                <td> Tonga: Tonga Meteorological Service</td>
+                <td> Tonga</td>
+             </tr>
+             <tr>
+                <td> United Kingdom of Great Britain and Northern Ireland: Met Office</td>
+                <td> UK</td>
+             </tr>
+             <tr>
+                <td> United States: Environmental Protection Agency (EPA), Air Quality Alerts</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> United States: Integrated Public Alerrt and Warning System (IPAWS)</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> United States: National Oceanic and Atmospheric Administration (NOAA), National Tsunami Warning Center</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> United States: National Oceanic and Atmospheric Administration (NOAA), National Weather Service</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> United States: National Oceanic and Atmospheric Administration (NOAA), National Weather Service - Marine Zones</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> United States: U.S. Geological Survey (USGS), Volcano Hazard Program</td>
+                <td> USA</td>
+             </tr>
+             <tr>
+                <td> Vanuatu: Meteorological Services</td>
+                <td> Vanuatu</td>
+             </tr>
+          </table>
+       </section>
+          
+          </section>
+       </section>
+    </div>
+   </div>
+</div>     
+                        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- OWM long bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="1070308379"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                    </div>
+                </div>                
+            </div>
+                                    
+        </main>
+        <div id="stick-footer-panel"></div>
+                    <div class="footer-website" onClick="toggleFooterSection(event)">
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Product Collections</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../api.html#current">Current and Forecast APIs</a></li>
+            <li><a href="../api.html#history">Historical Weather Data</a></li>
+            <li><a href="../api.html#maps">Weather Maps</a></li>
+            <li><a href="../widgets-constructor">Widgets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading">Subscription</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../appid.html">How to start</a></li>
+            <li><a href="../price.html">Pricing</a></li>
+            <li><a href="https://home.openweathermap.org/users/sign_up">Subscribe for free</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading"><a href="../about-us">About us</a></p>
+        <div class="section-content">
+          <p>OpenWeather is a team of IT experts and data scientists that has been practising deep weather data science since 2014. For each point on the globe, OpenWeather provides historical, current and forecasted weather data via light-speed APIs. Headquarters in London, UK.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Technologies</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../technology">Our technology</a></li>
+            <li><a href="../accuracy-and-quality.html">Accuracy and quality of weather data</a></li>
+            <li><a href="../stations.html">Connect your weather station</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section">
+        <p class="section-heading">Terms & Conditions</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf" target="_blank">Terms and conditions of sale</a></li>
+            <li><a href="https://openweather.co.uk/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf" target="_blank">Website	terms	and	conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section not-foldable">
+        <p class="section-heading" style="visibility: hidden">Contact us</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/team" target="_blank">Our team</a></li>
+            <li><a href="https://openweather.co.uk/blog/category/weather" target="_blank">Blog</a></li>
+            <li><a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support center</a></li>
+            <li><a href="mailto:info@openweathermap.org">info@openweathermap.org</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+        <p style="margin: 0;">Download OpenWeather app</p>
+        <div style="display: flex; flex-direction: row;">
+            <a style="margin-left: -10px;" href="https://apps.apple.com/gb/app/openweather/id1535923697" target="_blank">
+                <img style="height:60px; padding:10px;" src="../themes/openweathermap/assets/img/mobile_app/Download_on_the_App_Store_Badge_US-UK.svg" />
+            </a>  
+            <a href="https://play.google.com/store/apps/details?id=uk.co.openweather" target="_blank">
+              <img style="height:60px;"  alt='Get it on Google Play' src="../themes/openweathermap/assets/img/mobile_app/google-play-badge.png"/>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="horizontal-section">
+      <span>© 2012 — 2021 OpenWeather ® All rights reserved.</span>
+      <div class="social">
+        <a href="https://www.facebook.com/groups/270748973021342" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_facebook.png"/></a>
+        <a href="https://twitter.com/OpenWeatherMap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_twitter.png"/></a>
+        <a href="https://www.linkedin.com/company/9816754" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"/></a>
+        <a href="https://medium.com/@openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_medium.png"/></a>
+        <a href="https://t.me/openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_telegram.png"/></a>
+        <a href="https://github.com/search?q=openweathermap&amp;ref=cmdform" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_github.png"/></a>
+      </div>
+    </div>
+  </div>   
+                            <script src='../themes/openweathermap/assets/js/documentation.3berawer2323dAD124.js'></script>   
+            <link rel="stylesheet" href="../themes/openweathermap/assets/css/highlight.default.min.css">
+<script src="../themes/openweathermap/assets/js/highlight.min.js"></script>         
+        <script src="../../cdn.ravenjs.com/3.6.1/raven.min.js"></script>
+<script>Raven.config('http://66df88eb63e94f27964b84031e49b358@sentry.owm.io/16').install()</script>  
+        <script src='../themes/openweathermap/assets/js/bundle_owm_postload.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/stick_footer_panel.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/postload_scripts_js.js'></script>           
+    </body>
+
+<!-- Mirrored from openweathermap.org/api/road-risk by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:23 GMT -->
+</html>

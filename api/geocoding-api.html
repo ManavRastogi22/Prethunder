@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang='en'>
+    
+<!-- Mirrored from openweathermap.org/api/geocoding-api by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <!-- smart banner apple -->
+        <meta name="apple-itunes-app" content="app-id=1535923697">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+    <meta  http-equiv=Expires content="Tue, Sep 20 2018 15:27:22 GMT">
+    <meta http-equiv="Last-Modified" content="Tue, Sep 20 2018 15:27:22 GMT">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="weather, world, Openstreetmap, forecast, Openweather, current" >
+    <meta name="description" content="" >
+    <meta name="author" content="OpenWeatherMap.org">
+    <meta name="domain" content="OpenWeatherMap.org" >        
+    <meta name="p:domain_verify" content="34fe229eab8562dca90f4a5962ff80a9"/>
+    <meta property="title" content="Geocoding API" />                <link rel="shortcut icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/favicon.ico" />
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_60x60.png" sizes="60x60" type="image/png">   
+        <title>Geocoding API - OpenWeatherMap</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31601618-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-31601618-1');
+</script>        
+        <script src="../../code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="../../cdn.polyfill.io/v2/polyfill.min9e24.js?features=Array.from,Array.assign,fetch&amp;flags=always,gated"></script>
+<script src='../themes/openweathermap/assets/js/bundle_owm_preload.c31872127471c475ade1.js'></script>            
+        <link href='../themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css' rel="stylesheet"> 
+<link href='../themes/openweathermap/assets/css/stick_footer_panel.c31872127471c475ade1.css' rel="stylesheet">
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">        <link href='../themes/openweathermap/assets/css/new_owm_styles.522b0c2ecd513644.css' rel="stylesheet"> 
+
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">    
+        
+    </head>
+    <body class="body-orange" onClick="closePopUps()">
+                    <style>
+    .banner_stripe {
+        width: 100%; 
+        height: 80px; 
+        background-color: #1c1c1e;
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        font-family: Roboto,sans-serif;
+        position: relative;
+    }
+
+    .banner_icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 15px;
+        background-size: 64px 64px;
+        margin: 8px;
+    }
+    .google_button {
+        /* background-color: #3e83f8; */
+        background-color: #2196f3;
+        height: 36px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+        box-sizing: border-box;
+        color: #fff !important;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        line-height: 24px;
+        margin: 6px;
+        min-width: 40px;
+        outline: 0;
+        padding: 10px 14px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .google_button:hover, .google_button:focus {
+        text-decoration: none;
+    }
+    .smartbanner__exit {
+        position: absolute;
+        top: calc(50% - 6px);
+        left: 12px;
+        display: block;
+        margin: 0;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        text-align: center; 
+        }
+    .smartbanner__exit::before, .smartbanner__exit::after {
+      position: absolute;
+      width: 1px;
+      height: 12px;
+      content: ' ';
+      background: #767676;
+      }
+    .smartbanner__exit::before {
+      transform: rotate(45deg); }
+    .smartbanner__exit::after {
+      transform: rotate(-45deg); }
+
+</style>
+
+<div id="banner_android" class="banner_stripe">
+    <div style="display: flex; flex-direction: row; align-items: center; margin-left: 18px;">
+        <a class="smartbanner__exit" onClick="bannerClose()"></a>
+        <img src="../themes/openweathermap/assets/img/mobile_app/android_icon.png" class="banner_icon" />
+        <div>
+            <p style="font-size: 14px; color: #ffffff; margin: 0;">OpenWeather</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">OpenWeather Ltd.</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">GET - on Google Play</p>
+        </div>
+    </div>
+    <a class="google_button" style="font-size: 16px;" href="https://play.google.com/store/apps/details?id=uk.co.openweather" onclick="ga('send', 'event', 'app', 'click', 'androidTopBanner');">VIEW</a>
+</div>
+
+<script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function setCookie (name, value) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (5 * 1000 * 60 * 60 * 24))
+        document.cookie = name + '=' + escape(value) + '; expires=' + expires.toGMTString() + '; path=/'
+      }
+      
+    function bannerClose() {
+        document.getElementById("banner_android").style.display = "none";
+        setCookie("owm_banner_android_closed", true)
+    }
+    
+    document.onload = function() {
+       if ((document.cookie.indexOf("owm_banner_android_closed") === -1)  && /Android/i.test(window.navigator.userAgent)) {
+           document.getElementById("banner_android").style.display = 'flex';
+        } 
+    }()
+    
+    
+</script>   
+                <ul id="header-website" onClick="toggleMenu(event)">
+      <li class="logo">
+        <a href="../index.html">
+          <img src="../themes/openweathermap/assets/img/logo_white_cropped.png">
+        </a>
+      </li>
+      <li class="hamburger">
+        <img src="../themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"/>
+      </li>
+      <li>
+        <form role="search" id="nav-search-form" action="https://openweathermap.org/find" method="get">
+            <input type="text" id="q" name="q"  placeholder="Weather in your city">
+            <input type="submit" style="display:none;">
+        </form>
+      </li>
+      
+      <li>
+        <a href="../guide.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Guide</a>
+      </li>
+      <li>
+        <a href="../api.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'api']);">API</a>
+      </li>
+      <li>
+        <a href="../price.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'price']);">Pricing</a>
+      </li>
+      <li>
+        <a href="../weathermap.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Maps</a>
+      </li>
+      <li>
+        <a href="../our-initiatives.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Our Initiatives</a>
+      </li>
+      <li>
+        <a href="../examples.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'examples']);">Partners</a>
+      </li>
+      <li>
+        <a href="https://openweather.co.uk/blog/category/weather" target="_blank" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'news']);">Blog</a>
+      </li>
+      <!-- <li>
+        <a href="/about-us" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">About us</a>
+      </li> -->
+      <li>
+        <a href="https://home.openweathermap.org/marketplace" class="market-place" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'marketplace']);" target="_blank">Marketplace</a>
+      </li>
+                <li class="user-sign-in" id="sign_in"><a href="../home/sign_in.html">Sign in</a></li>
+            <li class="support-item">
+        <a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support</a>
+      </li>
+    </ul>
+<!-- Invisible header to take up the height -->
+<!-- <div style="height: 48pt; width: 100%; visibility: hidden;"></div> --> 
+        <div id="notes_block"></div>
+        <main class="wrapper"> 
+                            <div class="topic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                                    <h1 class="breadcrumb-title">Geocoding API</h1>
+                            </div>
+            <div class="col-sm-5">
+                <ol class="breadcrumb pull-right hidden-xs">
+                    <li><a href="../index.html">Home</a></li>
+                                            <li class="active"><a href="../api.html">API</a></li>
+                                                            
+                                                                        <li class="breadcrumb__leaf">Geocoding API</li>
+                                                            </ol>
+            </div>
+        </div>
+    </div>   
+</div>       
+                                    <!-- proofreading 29 June 2020 -->
+<div class="container documentation">
+   <div class="doc-container">
+     <div>
+       <nav>
+         <ul>
+            <li><a href="#description">Product description</a></li>
+            <li><a href="#direct">Direct geocoding</a>
+                 <ul>
+                 <li><a href="#direct_name">Coordinates by location name</a></li>
+                    <ul>
+                        <li><a href="#direct_name_how">How to make an API call</a></li>
+                        <li><a href="#direct_name_example">Example of API response</a></li>
+                        <li><a href="#direct_name_fields">Fields in API response</a></li>
+                    </ul>
+                <li><a href="#direct_zip">Coordinates by zip/post code</a></li>
+                    <ul>
+                        <li><a href="#direct_zip_how">How to make an API call</a></li>
+                        <li><a href="#direct_zip_example">Example of API response</a></li>
+                        <li><a href="#direct_zip_fields">Fields in API response</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li><a href="#reverse">Reverse geocoding</a>
+            <ul>
+                <li><a href="#reverse_how">How to make an API call</a></li>
+                <li><a href="#reverse_example">Example of API response</a></li>
+                <li><a href="#reverse_fields">Fields in API response</a></li>
+                </ul>
+            </li>
+         </ul>
+      </nav>
+      <div class="side-banner">
+           <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- Skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="6999090776"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>         </div>
+     </div>
+     <div>
+     <section id="description">
+         <p class=lead>Geocoding API is a simple tool that we have developed to ease the search for locations while working with geographic names and coordinates.</p>
+         <p align="justify">
+            Supporting API calls by geographical coordinates is the most accurate way to specify any location, that is why this method is integrated in all OpenWeather APIs. However, this way is not always suitable for all users. <br>Geocoding is the process of transformation of any location name into geographical coordinates, and the other way around (reverse geocoding). OpenWeather’s Geocoding API  supports both the direct and reverse methods, working at the level of city names, areas and districts, countries and states:</p>
+            <ul>
+            <li><a href="#direct">Direct geocoding</a> converts the specified name of a location or zip/post code into the exact geographical coordinates;</li>
+            <li><a href="#reverse">Reverse geocoding</a> converts the geographical coordinates into the names of the nearby locations.</li>
+            </ul>
+            </section>
+         <section id="direct">
+               <h1>Direct geocoding</h1>
+               <p>Direct geocoding allows to get geographical coordinates (lat, lon) by using name of the location (city name or area name). If you use the <code>limit</code> parameter in the API call, you can cap how many locations with the same name will be seen in the API response (for instance, London in the UK and London in the US). </p>
+              <section id="direct_name">
+              <h2>Coordinates by location name</h2>
+              
+              <section id="direct_name_how">
+               <h3>How to make an API call</h3>
+               <p class="sub-header">API call</p>
+               <div class="api">
+                  <code>http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+               </div>
+               <table class="material-table">
+                  <tr>
+                     <th colspan="3">Parameters</th>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">q</code></td>
+                     <td class="sub">required</td>
+                     <td>City name, state code (only for the US) and country code divided by comma. Please use ISO 3166 country codes.</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">appid</code></td>
+                     <td class="sub">required</td>
+                     <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">limit</code></td>
+                     <td class="sub">optional</td>
+                     <td>Number of the locations in the API response (several results can be returned in the API response)</td>
+                  </tr>
+               </table>
+               <p class="sub-header">Example of API call</p>
+                              <div class="response">
+                  <div class="api">
+                     <code> http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                <code class="json">
+[
+  {
+    "name": "London",
+    "local_names": {
+      "af": "Londen",
+      "ar": "لندن",
+      "ascii": "London",
+      "az": "London",
+      "bg": "Лондон",
+      "ca": "Londres",
+      "da": "London",
+      "de": "London",
+      "el": "Λονδίνο",
+      "en": "London",
+      "eu": "Londres",
+      "fa": "لندن",
+      "feature_name": "London",
+      "fi": "Lontoo",
+      "fr": "Londres",
+      "gl": "Londres",
+      "he": "לונדון",
+      "hi": "लंदन",
+      "hr": "London",
+      "hu": "London",
+      "id": "London",
+      "it": "Londra",
+      "ja": "ロンドン",
+      "la": "Londinium",
+      "lt": "Londonas",
+      "mk": "Лондон",
+      "nl": "Londen",
+      "no": "London",
+      "pl": "Londyn",
+      "pt": "Londres",
+      "ro": "Londra",
+      "ru": "Лондон",
+      "sk": "Londýn",
+      "sl": "London",
+      "sr": "Лондон",
+      "th": "ลอนดอน",
+      "tr": "Londra",
+      "vi": "Luân Đôn",
+      "zu": "ILondon"
+    },
+    "lat": 51.5085,
+    "lon": -0.1257,
+    "country": "GB"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "bg": "Лондон",
+      "de": "London",
+      "en": "London",
+      "fa": "لندن، انتاریو",
+      "feature_name": "London",
+      "fi": "London",
+      "fr": "London",
+      "he": "לונדון",
+      "ja": "ロンドン",
+      "lt": "Londonas",
+      "nl": "London",
+      "pl": "London",
+      "pt": "London",
+      "ru": "Лондон",
+      "sr": "Лондон"
+    },
+    "lat": 42.9834,
+    "lon": -81.233,
+    "country": "CA"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "en": "London",
+      "fa": "لندن، اوهایو",
+      "feature_name": "London",
+      "sr": "Ландон"
+    },
+    "lat": 39.8865,
+    "lon": -83.4483,
+    "country": "US",
+    "state": "OH"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "en": "London",
+      "fa": "لندن، کنتاکی",
+      "feature_name": "London",
+      "sr": "Ландон"
+    },
+    "lat": 37.129,
+    "lon": -84.0833,
+    "country": "US",
+    "state": "KY"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ascii": "London",
+      "ca": "Londres",
+      "en": "London",
+      "feature_name": "London"
+    },
+    "lat": 36.4761,
+    "lon": -119.4432,
+    "country": "US",
+    "state": "CA"
+  }
+]
+
+                </code>
+              </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="direct_name_example">
+               <p class="sub-header">Example of API response</p>
+               <div class="response open">
+                  <div class="api">
+                     <code>Example of API response</code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                <code class="json">
+[
+  {
+    "name": "London",
+    "local_names": {
+      "af": "Londen",
+      "ar": "لندن",
+      "ascii": "London",
+      "az": "London",
+      "bg": "Лондон",
+      "ca": "Londres",
+      "da": "London",
+      "de": "London",
+      "el": "Λονδίνο",
+      "en": "London",
+      "eu": "Londres",
+      "fa": "لندن",
+      "feature_name": "London",
+      "fi": "Lontoo",
+      "fr": "Londres",
+      "gl": "Londres",
+      "he": "לונדון",
+      "hi": "लंदन",
+      "hr": "London",
+      "hu": "London",
+      "id": "London",
+      "it": "Londra",
+      "ja": "ロンドン",
+      "la": "Londinium",
+      "lt": "Londonas",
+      "mk": "Лондон",
+      "nl": "Londen",
+      "no": "London",
+      "pl": "Londyn",
+      "pt": "Londres",
+      "ro": "Londra",
+      "ru": "Лондон",
+      "sk": "Londýn",
+      "sl": "London",
+      "sr": "Лондон",
+      "th": "ลอนดอน",
+      "tr": "Londra",
+      "vi": "Luân Đôn",
+      "zu": "ILondon"
+    },
+    "lat": 51.5085,
+    "lon": -0.1257,
+    "country": "GB"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "bg": "Лондон",
+      "de": "London",
+      "en": "London",
+      "fa": "لندن، انتاریو",
+      "feature_name": "London",
+      "fi": "London",
+      "fr": "London",
+      "he": "לונדון",
+      "ja": "ロンドン",
+      "lt": "Londonas",
+      "nl": "London",
+      "pl": "London",
+      "pt": "London",
+      "ru": "Лондон",
+      "sr": "Лондон"
+    },
+    "lat": 42.9834,
+    "lon": -81.233,
+    "country": "CA"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "en": "London",
+      "fa": "لندن، اوهایو",
+      "feature_name": "London",
+      "sr": "Ландон"
+    },
+    "lat": 39.8865,
+    "lon": -83.4483,
+    "country": "US",
+    "state": "OH"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ar": "لندن",
+      "ascii": "London",
+      "en": "London",
+      "fa": "لندن، کنتاکی",
+      "feature_name": "London",
+      "sr": "Ландон"
+    },
+    "lat": 37.129,
+    "lon": -84.0833,
+    "country": "US",
+    "state": "KY"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "ascii": "London",
+      "ca": "Londres",
+      "en": "London",
+      "feature_name": "London"
+    },
+    "lat": 36.4761,
+    "lon": -119.4432,
+    "country": "US",
+    "state": "CA"
+  }
+]
+                </code>
+              </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="direct_name_fields">
+               <p class="sub-header">Fields in API response</p>
+               <div class="info-board info-board-orange">
+                Please note that the fields present will vary based on a country to which a location belongs as well as a specific location.
+               </div>
+               <ul class="docs-list">
+                  <li><code>name</code> Name of the found location
+                  </li>
+                  <li><code>local_names</code> 
+                  </li>
+                  <ul>
+                  <li><code>local_names.[language code]</code> Name of the found location in different languages. The list of names can be different for different locations
+                  </li>
+                  <li><code>local_names.ascii</code> Internal field
+                  </li>
+                  <li><code>local_names.feature_name</code> Internal field
+                  </li>
+                  </ul>
+                  <li><code>lat</code> Geographical coordinates of the found location (latitude)
+                  </li>
+                  <li><code>lon</code> Geographical coordinates of the found location (longitude)
+                  </li>
+                  <li><code>country</code> Country of the found location
+                  </li>
+                  <li><code>state</code> <span class="sub">(where available)</span> State of the found location 
+                  </li>
+               </ul>
+            </section>
+         </section>
+     <section id="direct_zip">
+              <h2>Coordinates by zip/post code</h2>
+              
+              <section id="direct_zip_how">
+               <h3>How to make an API call</h3>
+               <p class="sub-header">API call</p>
+               <div class="api">
+                  <code>http://api.openweathermap.org/geo/1.0/zip?zip={zip code},{country code}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+               </div>
+               <table class="material-table">
+                  <tr>
+                     <th colspan="3">Parameters</th>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">zip code</code></td>
+                     <td class="sub">required</td>
+                     <td>Zip/post code and country code divided by comma. Please use ISO 3166 country codes.</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">appid</code></td>
+                     <td class="sub">required</td>
+                     <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+                  </tr>
+               </table>
+               <p class="sub-header">Example of API call</p>
+                <div class="response">
+                  <div class="api">
+                     <code> http://api.openweathermap.org/geo/1.0/zip?zip=E14,GB&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                <code class="json">
+{
+  "zip": "E14",
+  "name": "Cubitt Town",
+  "lat": 51.4969,
+  "lon": -0.0087,
+  "country": "GB"
+}
+
+                </code>
+              </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="direct_zip_example">
+               <p class="sub-header">Example of API response</p>
+               <div class="response open">
+                  <div class="api">
+                     <code>Example of API response</code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                <code class="json">
+{
+  "zip": "90210",
+  "name": "Beverly Hills",
+  "lat": 34.0901,
+  "lon": -118.4065,
+  "country": "US"
+}
+                </code>
+              </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="direct_zip_fields">
+               <p class="sub-header">Fields in API response</p>
+               <ul class="docs-list">
+                  <li><code>zip</code> Specified zip/post code in the API request
+                  </li>
+                  <li><code>name</code> Name of the found area
+                  </li>
+                  <li><code>lat</code> Geographical coordinates of the centroid of found zip/post code (latitude)
+                  </li>
+                  <li><code>lon</code> Geographical coordinates of the centroid of found zip/post code (longitude)
+                  </li>
+                  <li><code>country</code> Country of the found zip/post code
+               </ul>
+            </section>
+         </section>        
+        </section>
+         
+         <section id="reverse">
+            <h1>Reverse geocoding</h1>
+            <p>Reverse geocoding allows to get name of the location (city name or area name) by using geografical coordinates (lat, lon). The <code>limit</code> parameter in the API call allows you to cap how many location names you will see in the API response. </p>
+            <section id="reverse_how">
+               <h3>How to make an API call</h3>
+               <p class="sub-header">API call</p>
+               <div class="api">
+                  <code>http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={limit}&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+               </div>
+               <table class="material-table">
+                  <tr>
+                     <th colspan="3">Parameters</th>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">lat, lon</code></td>
+                     <td class="sub">required</td>
+                     <td>Geographical coordinates (latitude, longitude)</td>
+                  </tr>
+                  <tr>
+                     <td><code class="nowrap">appid</code></td>
+                     <td class="sub">required</td>
+                    <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+                  </tr>
+                  <tr>
+                     <td><code>limit</code></td>
+                     <td class="sub">optional</td>
+                     <td>Number of the location names in the API response (several results can be returned in the API response)</td>
+                  </tr>
+               </table>
+               <p class="sub-header">Example of API call</p>
+                <div class="response">
+                  <div class="api">
+                     <code>http://api.openweathermap.org/geo/1.0/reverse?lat=51.5098&lon=-0.1180&limit=5&appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a></code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                   <code class="json">
+  [
+  {
+    "name": "City of London",
+    "local_names": {
+      "ar": "مدينة لندن",
+      "ascii": "City of London",
+      "bg": "Сити",
+      "ca": "La City",
+      "de": "London City",
+      "el": "Σίτι του Λονδίνου",
+      "en": "City of London",
+      "fa": "سیتی لندن",
+      "feature_name": "City of London",
+      "fi": "Lontoon City",
+      "fr": "Cité de Londres",
+      "gl": "Cidade de Londres",
+      "he": "הסיטי של לונדון",
+      "hi": "सिटी ऑफ़ लंदन",
+      "id": "Kota London",
+      "it": "Londra",
+      "ja": "シティ・オブ・ロンドン",
+      "la": "Civitas Londinium",
+      "lt": "Londono Sitis",
+      "pt": "Cidade de Londres",
+      "ru": "Сити",
+      "sr": "Сити",
+      "th": "นครลอนดอน",
+      "tr": "Londra Şehri",
+      "vi": "Thành phố Luân Đôn",
+      "zu": "Idolobha weLondon"
+    },
+    "lat": 51.5128,
+    "lon": -0.0918,
+    "country": "GB"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "af": "Londen",
+      "ar": "لندن",
+      "ascii": "London",
+      "az": "London",
+      "bg": "Лондон",
+      "ca": "Londres",
+      "da": "London",
+      "de": "London",
+      "el": "Λονδίνο",
+      "en": "London",
+      "eu": "Londres",
+      "fa": "لندن",
+      "feature_name": "London",
+      "fi": "Lontoo",
+      "fr": "Londres",
+      "gl": "Londres",
+      "he": "לונדון",
+      "hi": "लंदन",
+      "hr": "London",
+      "hu": "London",
+      "id": "London",
+      "it": "Londra",
+      "ja": "ロンドン",
+      "la": "Londinium",
+      "lt": "Londonas",
+      "mk": "Лондон",
+      "nl": "Londen",
+      "no": "London",
+      "pl": "Londyn",
+      "pt": "Londres",
+      "ro": "Londra",
+      "ru": "Лондон",
+      "sk": "Londýn",
+      "sl": "London",
+      "sr": "Лондон",
+      "th": "ลอนดอน",
+      "tr": "Londra",
+      "vi": "Luân Đôn",
+      "zu": "ILondon"
+    },
+    "lat": 51.5085,
+    "lon": -0.1257,
+    "country": "GB"
+  },
+  {
+    "name": "Islington",
+    "local_names": {
+      "ascii": "Islington",
+      "az": "İslinqton",
+      "fa": "ایزلینتن",
+      "feature_name": "Islington",
+      "fr": "District londonien d'Islington",
+      "he": "איזלינגטון",
+      "ja": "イズリントン",
+      "ru": "Ислингтон"
+    },
+    "lat": 51.5362,
+    "lon": -0.103,
+    "country": "GB"
+  },
+  {
+    "name": "Lewisham",
+    "local_names": {
+      "ascii": "Lewisham",
+      "de": "London Borough of Lewisham",
+      "en": "Lewisham",
+      "feature_name": "Lewisham",
+      "fi": "Lewisham",
+      "fr": "Lewisham",
+      "hu": "Lewisham kerület",
+      "nl": "Lewisham",
+      "no": "Lewisham",
+      "ro": "Lewisham"
+    },
+    "lat": 51.4535,
+    "lon": -0.018,
+    "country": "GB"
+  },
+  {
+    "name": "Islington",
+    "local_names": {
+      "ascii": "Islington",
+      "de": "London Borough of Islington",
+      "en": "Islington",
+      "feature_name": "Islington",
+      "fr": "Islington",
+      "nl": "Islington",
+      "no": "Islington",
+      "ro": "Islington"
+    },
+    "lat": 51.547,
+    "lon": -0.1094,
+    "country": "GB"
+  }
+]
+
+                   </code>
+                 </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="reverse_example">
+               <p class="sub-header">Example of API response</p>
+               <div class="response open">
+                  <div class="api">
+                     <code>Example of API response</code>
+                  </div>
+                  <div class="content">
+                     <pre>
+                   <code class="json">
+  [
+  {
+    "name": "City of London",
+    "local_names": {
+      "ar": "مدينة لندن",
+      "ascii": "City of London",
+      "bg": "Сити",
+      "ca": "La City",
+      "de": "London City",
+      "el": "Σίτι του Λονδίνου",
+      "en": "City of London",
+      "fa": "سیتی لندن",
+      "feature_name": "City of London",
+      "fi": "Lontoon City",
+      "fr": "Cité de Londres",
+      "gl": "Cidade de Londres",
+      "he": "הסיטי של לונדון",
+      "hi": "सिटी ऑफ़ लंदन",
+      "id": "Kota London",
+      "it": "Londra",
+      "ja": "シティ・オブ・ロンドン",
+      "la": "Civitas Londinium",
+      "lt": "Londono Sitis",
+      "pt": "Cidade de Londres",
+      "ru": "Сити",
+      "sr": "Сити",
+      "th": "นครลอนดอน",
+      "tr": "Londra Şehri",
+      "vi": "Thành phố Luân Đôn",
+      "zu": "Idolobha weLondon"
+    },
+    "lat": 51.5128,
+    "lon": -0.0918,
+    "country": "GB"
+  },
+  {
+    "name": "London",
+    "local_names": {
+      "af": "Londen",
+      "ar": "لندن",
+      "ascii": "London",
+      "az": "London",
+      "bg": "Лондон",
+      "ca": "Londres",
+      "da": "London",
+      "de": "London",
+      "el": "Λονδίνο",
+      "en": "London",
+      "eu": "Londres",
+      "fa": "لندن",
+      "feature_name": "London",
+      "fi": "Lontoo",
+      "fr": "Londres",
+      "gl": "Londres",
+      "he": "לונדון",
+      "hi": "लंदन",
+      "hr": "London",
+      "hu": "London",
+      "id": "London",
+      "it": "Londra",
+      "ja": "ロンドン",
+      "la": "Londinium",
+      "lt": "Londonas",
+      "mk": "Лондон",
+      "nl": "Londen",
+      "no": "London",
+      "pl": "Londyn",
+      "pt": "Londres",
+      "ro": "Londra",
+      "ru": "Лондон",
+      "sk": "Londýn",
+      "sl": "London",
+      "sr": "Лондон",
+      "th": "ลอนดอน",
+      "tr": "Londra",
+      "vi": "Luân Đôn",
+      "zu": "ILondon"
+    },
+    "lat": 51.5085,
+    "lon": -0.1257,
+    "country": "GB"
+  },
+  {
+    "name": "Islington",
+    "local_names": {
+      "ascii": "Islington",
+      "az": "İslinqton",
+      "fa": "ایزلینتن",
+      "feature_name": "Islington",
+      "fr": "District londonien d'Islington",
+      "he": "איזלינגטון",
+      "ja": "イズリントン",
+      "ru": "Ислингтон"
+    },
+    "lat": 51.5362,
+    "lon": -0.103,
+    "country": "GB"
+  },
+  {
+    "name": "Lewisham",
+    "local_names": {
+      "ascii": "Lewisham",
+      "de": "London Borough of Lewisham",
+      "en": "Lewisham",
+      "feature_name": "Lewisham",
+      "fi": "Lewisham",
+      "fr": "Lewisham",
+      "hu": "Lewisham kerület",
+      "nl": "Lewisham",
+      "no": "Lewisham",
+      "ro": "Lewisham"
+    },
+    "lat": 51.4535,
+    "lon": -0.018,
+    "country": "GB"
+  },
+  {
+    "name": "Islington",
+    "local_names": {
+      "ascii": "Islington",
+      "de": "London Borough of Islington",
+      "en": "Islington",
+      "feature_name": "Islington",
+      "fr": "Islington",
+      "nl": "Islington",
+      "no": "Islington",
+      "ro": "Islington"
+    },
+    "lat": 51.547,
+    "lon": -0.1094,
+    "country": "GB"
+  }
+]
+                   </code>
+                 </pre>
+                  </div>
+               </div>
+            </section>
+            <section id="reverse_fields" >
+               <p class="sub-header">Fields in API response</p>
+               <div class="info-board info-board-orange">
+                Please note that the fields present will vary based on a country to which a location belongs as well as a specific location.
+               </div>
+               <ul class="docs-list">
+                  <li><code>name</code> Name of the found location
+                  </li>
+                  <li><code>local_names</code> 
+                  </li>
+                  <ul>
+                  <li><code>local_names.[language code]</code> Name of the found location in different languages. The list of names can be different for different locations.
+                  </li>
+                  <li><code>local_names.ascii</code> Internal field
+                  </li>
+                  <li><code>local_names.feature_name</code> Internal field
+                  </li>
+                  </ul>
+                  <li><code>lat</code> Geographical coordinates of the found location (latitude)
+                  </li>
+                  <li><code>lon</code> Geographical coordinates of the found location (longitude)
+                  </li>
+                  <li><code>country</code> Country of the found location
+                  </li>
+                  <li><code>state</code> <span class="sub">(where available)</span> State of the found location 
+                  </li>
+               </ul>
+            </section>
+         </section>
+      </div>
+   </div>
+</div>     
+                        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- OWM long bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="1070308379"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                    </div>
+                </div>                
+            </div>
+                                    
+        </main>
+        <div id="stick-footer-panel"></div>
+                    <div class="footer-website" onClick="toggleFooterSection(event)">
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Product Collections</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../api.html#current">Current and Forecast APIs</a></li>
+            <li><a href="../api.html#history">Historical Weather Data</a></li>
+            <li><a href="../api.html#maps">Weather Maps</a></li>
+            <li><a href="../widgets-constructor">Widgets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading">Subscription</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../appid.html">How to start</a></li>
+            <li><a href="../price.html">Pricing</a></li>
+            <li><a href="https://home.openweathermap.org/users/sign_up">Subscribe for free</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading"><a href="../about-us">About us</a></p>
+        <div class="section-content">
+          <p>OpenWeather is a team of IT experts and data scientists that has been practising deep weather data science since 2014. For each point on the globe, OpenWeather provides historical, current and forecasted weather data via light-speed APIs. Headquarters in London, UK.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Technologies</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../technology">Our technology</a></li>
+            <li><a href="../accuracy-and-quality.html">Accuracy and quality of weather data</a></li>
+            <li><a href="../stations.html">Connect your weather station</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section">
+        <p class="section-heading">Terms & Conditions</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf" target="_blank">Terms and conditions of sale</a></li>
+            <li><a href="https://openweather.co.uk/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf" target="_blank">Website	terms	and	conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section not-foldable">
+        <p class="section-heading" style="visibility: hidden">Contact us</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/team" target="_blank">Our team</a></li>
+            <li><a href="https://openweather.co.uk/blog/category/weather" target="_blank">Blog</a></li>
+            <li><a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support center</a></li>
+            <li><a href="mailto:info@openweathermap.org">info@openweathermap.org</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+        <p style="margin: 0;">Download OpenWeather app</p>
+        <div style="display: flex; flex-direction: row;">
+            <a style="margin-left: -10px;" href="https://apps.apple.com/gb/app/openweather/id1535923697" target="_blank">
+                <img style="height:60px; padding:10px;" src="../themes/openweathermap/assets/img/mobile_app/Download_on_the_App_Store_Badge_US-UK.svg" />
+            </a>  
+            <a href="https://play.google.com/store/apps/details?id=uk.co.openweather" target="_blank">
+              <img style="height:60px;"  alt='Get it on Google Play' src="../themes/openweathermap/assets/img/mobile_app/google-play-badge.png"/>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="horizontal-section">
+      <span>© 2012 — 2021 OpenWeather ® All rights reserved.</span>
+      <div class="social">
+        <a href="https://www.facebook.com/groups/270748973021342" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_facebook.png"/></a>
+        <a href="https://twitter.com/OpenWeatherMap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_twitter.png"/></a>
+        <a href="https://www.linkedin.com/company/9816754" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"/></a>
+        <a href="https://medium.com/@openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_medium.png"/></a>
+        <a href="https://t.me/openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_telegram.png"/></a>
+        <a href="https://github.com/search?q=openweathermap&amp;ref=cmdform" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_github.png"/></a>
+      </div>
+    </div>
+  </div>   
+                            <script src='../themes/openweathermap/assets/js/documentation.3berawer2323dAD124.js'></script>   
+            <link rel="stylesheet" href="../themes/openweathermap/assets/css/highlight.default.min.css">
+<script src="../themes/openweathermap/assets/js/highlight.min.js"></script>         
+        <script src="../../cdn.ravenjs.com/3.6.1/raven.min.js"></script>
+<script>Raven.config('http://66df88eb63e94f27964b84031e49b358@sentry.owm.io/16').install()</script>  
+        <script src='../themes/openweathermap/assets/js/bundle_owm_postload.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/stick_footer_panel.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/postload_scripts_js.js'></script>           
+    </body>
+
+<!-- Mirrored from openweathermap.org/api/geocoding-api by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:49 GMT -->
+</html>

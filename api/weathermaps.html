@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang='en'>
+    
+<!-- Mirrored from openweathermap.org/api/weathermaps by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <!-- smart banner apple -->
+        <meta name="apple-itunes-app" content="app-id=1535923697">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+    <meta  http-equiv=Expires content="Tue, Sep 20 2018 15:27:22 GMT">
+    <meta http-equiv="Last-Modified" content="Tue, Sep 20 2018 15:27:22 GMT">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="weather, world, Openstreetmap, forecast, Openweather, current" >
+    <meta name="description" content="" >
+    <meta name="author" content="OpenWeatherMap.org">
+    <meta name="domain" content="OpenWeatherMap.org" >        
+    <meta name="p:domain_verify" content="34fe229eab8562dca90f4a5962ff80a9"/>
+    <meta property="title" content="Weather maps 1.0" />                <link rel="shortcut icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/favicon.ico" />
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_60x60.png" sizes="60x60" type="image/png">   
+        <title>Weather maps 1.0 - OpenWeatherMap</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31601618-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-31601618-1');
+</script>        
+        <script src="../../code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="../../cdn.polyfill.io/v2/polyfill.min9e24.js?features=Array.from,Array.assign,fetch&amp;flags=always,gated"></script>
+<script src='../themes/openweathermap/assets/js/bundle_owm_preload.c31872127471c475ade1.js'></script>            
+        <link href='../themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css' rel="stylesheet"> 
+<link href='../themes/openweathermap/assets/css/stick_footer_panel.c31872127471c475ade1.css' rel="stylesheet">
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">        <link href='../themes/openweathermap/assets/css/new_owm_styles.522b0c2ecd513644.css' rel="stylesheet"> 
+
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">    
+        
+    </head>
+    <body class="body-orange" onClick="closePopUps()">
+                    <style>
+    .banner_stripe {
+        width: 100%; 
+        height: 80px; 
+        background-color: #1c1c1e;
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        font-family: Roboto,sans-serif;
+        position: relative;
+    }
+
+    .banner_icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 15px;
+        background-size: 64px 64px;
+        margin: 8px;
+    }
+    .google_button {
+        /* background-color: #3e83f8; */
+        background-color: #2196f3;
+        height: 36px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+        box-sizing: border-box;
+        color: #fff !important;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        line-height: 24px;
+        margin: 6px;
+        min-width: 40px;
+        outline: 0;
+        padding: 10px 14px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .google_button:hover, .google_button:focus {
+        text-decoration: none;
+    }
+    .smartbanner__exit {
+        position: absolute;
+        top: calc(50% - 6px);
+        left: 12px;
+        display: block;
+        margin: 0;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        text-align: center; 
+        }
+    .smartbanner__exit::before, .smartbanner__exit::after {
+      position: absolute;
+      width: 1px;
+      height: 12px;
+      content: ' ';
+      background: #767676;
+      }
+    .smartbanner__exit::before {
+      transform: rotate(45deg); }
+    .smartbanner__exit::after {
+      transform: rotate(-45deg); }
+
+</style>
+
+<div id="banner_android" class="banner_stripe">
+    <div style="display: flex; flex-direction: row; align-items: center; margin-left: 18px;">
+        <a class="smartbanner__exit" onClick="bannerClose()"></a>
+        <img src="../themes/openweathermap/assets/img/mobile_app/android_icon.png" class="banner_icon" />
+        <div>
+            <p style="font-size: 14px; color: #ffffff; margin: 0;">OpenWeather</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">OpenWeather Ltd.</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">GET - on Google Play</p>
+        </div>
+    </div>
+    <a class="google_button" style="font-size: 16px;" href="https://play.google.com/store/apps/details?id=uk.co.openweather" onclick="ga('send', 'event', 'app', 'click', 'androidTopBanner');">VIEW</a>
+</div>
+
+<script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function setCookie (name, value) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (5 * 1000 * 60 * 60 * 24))
+        document.cookie = name + '=' + escape(value) + '; expires=' + expires.toGMTString() + '; path=/'
+      }
+      
+    function bannerClose() {
+        document.getElementById("banner_android").style.display = "none";
+        setCookie("owm_banner_android_closed", true)
+    }
+    
+    document.onload = function() {
+       if ((document.cookie.indexOf("owm_banner_android_closed") === -1)  && /Android/i.test(window.navigator.userAgent)) {
+           document.getElementById("banner_android").style.display = 'flex';
+        } 
+    }()
+    
+    
+</script>   
+                <ul id="header-website" onClick="toggleMenu(event)">
+      <li class="logo">
+        <a href="../index.html">
+          <img src="../themes/openweathermap/assets/img/logo_white_cropped.png">
+        </a>
+      </li>
+      <li class="hamburger">
+        <img src="../themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"/>
+      </li>
+      <li>
+        <form role="search" id="nav-search-form" action="https://openweathermap.org/find" method="get">
+            <input type="text" id="q" name="q"  placeholder="Weather in your city">
+            <input type="submit" style="display:none;">
+        </form>
+      </li>
+      
+      <li>
+        <a href="../guide.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Guide</a>
+      </li>
+      <li>
+        <a href="../api.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'api']);">API</a>
+      </li>
+      <li>
+        <a href="../price.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'price']);">Pricing</a>
+      </li>
+      <li>
+        <a href="../weathermap.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Maps</a>
+      </li>
+      <li>
+        <a href="../our-initiatives.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Our Initiatives</a>
+      </li>
+      <li>
+        <a href="../examples.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'examples']);">Partners</a>
+      </li>
+      <li>
+        <a href="https://openweather.co.uk/blog/category/weather" target="_blank" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'news']);">Blog</a>
+      </li>
+      <!-- <li>
+        <a href="/about-us" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">About us</a>
+      </li> -->
+      <li>
+        <a href="https://home.openweathermap.org/marketplace" class="market-place" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'marketplace']);" target="_blank">Marketplace</a>
+      </li>
+                <li class="user-sign-in" id="sign_in"><a href="../home/sign_in.html">Sign in</a></li>
+            <li class="support-item">
+        <a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support</a>
+      </li>
+    </ul>
+<!-- Invisible header to take up the height -->
+<!-- <div style="height: 48pt; width: 100%; visibility: hidden;"></div> --> 
+        <div id="notes_block"></div>
+        <main class="wrapper"> 
+                            <div class="topic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                                    <h1 class="breadcrumb-title">Weather maps 1.0</h1>
+                            </div>
+            <div class="col-sm-5">
+                <ol class="breadcrumb pull-right hidden-xs">
+                    <li><a href="../index.html">Home</a></li>
+                                            <li class="active"><a href="../api.html">API</a></li>
+                                                            
+                                                                        <li class="breadcrumb__leaf">Weather maps 1.0</li>
+                                                            </ol>
+            </div>
+        </div>
+    </div>   
+</div>       
+                                    <style>
+   .ow-btn {
+       margin: 16pt 0;
+   }
+   .documentation img {
+       width: 100%;
+   }
+   .grid-5-7 h3 {
+      margin-top: 0;
+  }
+</style>
+<div class="container documentation">
+  <div class="doc-container">
+    <div>
+      <nav>
+         <ul>
+            <li><a href="#urlformat">URL format</a></li>
+            <li><a href="#examples">Weather layers</a></li>
+            <li><a href="#modis">Satellite base map for weather layers </a></li>
+            <li><a href="#legend">Map styles legend</a></li>
+            <li><a href="#google2">Google Maps JavaScript API based on OpenWeatherMap API</a></li>
+            <li><a href="#library"> Libraries to connect weather layers</a></li>
+         </ul>
+      </nav>
+      <div class="side-banner">
+          <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- Skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="6999090776"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>      </div>
+    </div>
+    <div>
+         <p class="lead">
+            OpenWeatherMap provides many kinds of weather maps including Precipitation, Clouds, Pressure, Temperature,
+            Wind. You can connect them to mobile and web apps.
+            <!--</br>Also, know how to add <a href="#modis">MODIS satellite imagery</a> powered by VANE platform, which is a great base map for weather layers. -->
+         </p>
+         <div class="info-board info-board-blue">
+            We have launched <a href="weather-map-2.html"><b>Weather maps 2.0</b></a>! </p>
+            <p>Now available Forecast, Historical and Current weather maps. 15 weather map layers. You can get all of them using only one simple URL! <a href="weather-map-2.html">Learn more</a></p>
+         </div>
+         <section id="urlformat">
+            <h2>URL format</h2>
+            <!-- <p>
+               There are two endpoints for accessing weather layers.
+            </p> -->
+            <p>
+               The following endpoint is available for everyone. It requires only the <a href="https://home.openweathermap.org/api_keys">API key</a> authentication.
+            <p>
+            <div class="api">
+               <code>
+               https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid=<a href="https://home.openweathermap.org/api_keys" target="_blank">{API key}</a>
+               </code>
+            </div>
+            <!-- <p>
+               This endpoint is only available for users who subscribed to <a href="/price">Developer plan and higher</a>. It also requires the API key authentication. The access is given only by request.
+            <p>
+            <div class="api">
+               <code>
+               https://maps.owm.io/map/{layer}/{z}/{x}/{y}.png?appid={API key}
+               </code>
+            </div> -->
+            <table class="material-table">
+               <tr>
+                  <th colspan="3">Parameters</th>
+               </tr>
+               <tr>
+                  <td><code>{layer}</code></td>
+                  <td><span class="sub">required</span></td>
+                  <td>layer name</td>
+               </tr>
+               <tr>
+                  <td><code>{z}</code></td>
+                  <td><span class="sub">required</span></td>
+                  <td>number of zoom level</td>
+               </tr>
+               <tr>
+                  <td><code>{x}</code></td>
+                  <td><span class="sub">required</span></td>
+                  <td>number of x tile coordinate</td>
+               </tr>
+               <tr>
+                  <td><code>{y}</code></td>
+                  <td><span class="sub">required</span></td>
+                  <td>number of y tile coordinate</td>
+               </tr>
+               <tr>
+                  <td><code>appid</code></td>
+                  <td><span class="sub">required</span></td>
+                  <td>Your unique API key (you can always find it on your account page under the <a href="https://home.openweathermap.org/api_keys" target="_blank">"API key" tab</a>)</td>
+               </tr>
+            </table>
+         </section>
+         <section id="examples">
+            <h2>
+               Examples of weather map layers
+            </h2>
+
+               <section id="clouds">
+                 <div class="grid-5-7">
+                  <div>
+                    <h3>Clouds</h3>
+                     <p><code>layer</code> : <span class="param-val">clouds_new</span></p>
+                     <p><code>area</code> : <span class="param-val">worldwide</span></p>
+                     <a class="ow-btn round btn-black" href='../weathermap97d2?basemap=map&amp;cities=false&amp;layer=clouds&amp;lat=30&amp;lon=-20&amp;zoom=3'>Preview weathermap</a>
+                  </div>
+                  <div>
+                     <img src="../themes/openweathermap/assets/vendor/owm/img/clouds_new.jpg"
+                        alt="Clouds">
+                  </div>
+                   </div>
+               </section>
+
+            <section id="precip">
+              <div class="grid-5-7">
+               <div>
+                 <h3>Precipitation</h3>
+                  <p><code>layer</code> : <span class="param-val">precipitation_new</span></p>
+                  <p><code>area</code> : <span class="param-val">worldwide</span></p>
+                  <a class="ow-btn round btn-black" href='../weathermapa93e?basemap=map&amp;cities=false&amp;layer=precipitation&amp;lat=30&amp;lon=-20&amp;zoom=3'>Preview weathermap</a>
+               </div>
+               <div>
+                  <img src="../themes/openweathermap/assets/vendor/owm/img/precipitation_new.jpg" alt="Precipitations">
+               </div>
+              </div>
+            </section>
+
+               <section id="pres">
+                 <div class="grid-5-7">
+                  <div>
+                     <h3>Sea level pressure</h3>
+                     <p><code>layer</code> : <span class="param-val">pressure_new</span></p>
+                     <p><code>area</code> : <span class="param-val">worldwide</span></p>
+                     <a class="ow-btn round btn-black" href='../weathermap5185.html?basemap=map&amp;cities=false&amp;layer=pressure&amp;lat=30&amp;lon=-20&amp;zoom=3'>Preview weathermap</a>
+                  </div>
+                  <div>
+                     <div>
+                        <img src="../themes/openweathermap/assets/vendor/owm/img/pressure_new.jpg" alt="Sea level pressure">
+                     </div>
+                  </div>
+                 </div>
+               </section>
+
+               <section id="wind">
+                 <div class="grid-5-7">
+                  <div>
+                    <h3>Wind speed</h3>
+                     <p><code>layer</code> : <span class="param-val">wind_new</span></p>
+                     <p><code>area</code> : <span class="param-val">worldwide</span></p>
+                     <a class="ow-btn round btn-black" href='../weathermap0a44.html?basemap=map&amp;cities=false&amp;layer=windspeed&amp;lat=30&amp;lon=-20&amp;zoom=3'>Preview weathermap</a>
+                  </div>
+                  <div>
+                     <img src="../themes/openweathermap/assets/vendor/owm/img/wind_new.jpg" alt="Wind speed">
+                  </div>
+                 </div>
+               </section>
+
+               <section id="temp">
+                 <div class="grid-5-7">
+                  <div>
+                    <h3>Temperature</h3>
+                     <p><code>layer</code> : <span class="param-val">temp_new</span></p>
+                     <p><code>area</code> : <span class="param-val">worldwide</span></p>
+                     <a class="ow-btn round btn-black" href='../weathermapf896.html?basemap=map&amp;cities=false&amp;layer=temperature&amp;lat=30&amp;lon=-20&amp;zoom=3'>Preview weathermap</a>
+                  </div>
+                  <div>
+                     <img src="../themes/openweathermap/assets/vendor/owm/img/temperature_new.jpg" alt="Temperature">
+                  </div>
+                 </div>
+               </section>
+
+               <!-- <section  id="modis">
+                 <div class="grid-5-7">
+                  <div>
+                    <h3>Satellite base map</h3>
+                     <strong>You need to request this layer according to <a href="http://owm.io/sat#modis" target="_blank">VANE API specification</a></strong>
+                     <div class="text-center">
+                        <a class="ow-btn round btn-black" href='http://owm.io/sql-viewer?select=b1%2Cb4%2Cb3&from=modis&where=&op=&order=last&color=modis&lat=38.41&lon=31.99&zoom=3#' target="_blank">Open in VANE SQL viewer</a>
+                     </div>
+                  </div>
+                  <div>
+                     <img src="/themes/openweathermap/assets/vendor/owm/img/modis_base.png" alt="Temperature">
+                  </div>
+                 </div>
+               </section> -->
+         </section>
+         <section id="legend">
+            <h2>Map styles legend</h2>
+            <p>
+               <a href="../map_legend.html">Default styles for weather layers</a>
+            </p>
+            <!-- <p>
+               There is also availability to customize weather layers by using the Map editor. Click the <a href="/map_editor_2">link</a> to check out the guidance on how to use it.
+            </p> -->
+         </section>
+         <section id="google2">
+            <h2>Google Maps JavaScript API based on OpenWeatherMap API</h2>
+            <p>
+               Google has closed their Weather and Cloud solutions since 4th of June 2015 and recommended to use OpenWeatherMap with the Google Maps JavaScript API as an alternative solution.
+            </p>
+            <p>'Displaying weather data with the Google Maps API and OpenWeatherMap'
+               <a href="https://github.com/google/maps-for-work-samples/blob/master/samples/maps/OpenWeatherMapLayer/OpenWeatherMapLayer.pdf">manual</a>.
+            </p>
+         </section>
+         <section id="library">
+            <h2>Libraries to connect weather layers</h2>
+            <p class="sub-header">Open Layers</p>
+            <div>
+               The following functions are available for the OpenLayers library:
+               <ul>
+                  <li>Classes of weather layer and weather stations layer</li>
+                  <li>Possibility to set your own style</li>
+                  <li>Classes with clustered markers</li>
+                  <li>Support of marker server clustering</li>
+               </ul>
+            </div>
+            <p class="sub-header">Leaflet</p>
+            <div>
+               The OpenWeatherMap javascript library is designed to work with the Leaflet mapping service. The current version of the library allows the following:
+               <ul>
+                  <li>Embedding of layer with current weather in cities </li>
+                  <li>Embedding of layer with weather stations</li>
+                  <li>The library supports customer clustering</li>
+               </ul>
+            </div>
+            <p class="sub-header">Leaflet library</p>
+            <p>Another implementation of map based on Leaflet technology supports OWM's TileLayers and current city/station data. It is configurable with many options. For current city/station data the library supports refreshing the data in intervals, some types of client-side clustering (show only the station/city with the highest rank for a defined pixel square), custom image set (if you provide one), different languages ("en", "de", "ru", "fr", but translation is incomplete), minZoom and others.</p>
+            <p>Source and documentation (README.md) is available on GitHub <a href="https://github.com/buche/leaflet-openweathermap">https://github.com/buche/leaflet-openweathermap</a>
+            <p>Example of weather map:  <a href=https://github.com/owm-inc/VANE-intro/tree/master/apps>https://github.com/owm-inc/VANE-intro/tree/master/apps</a></p>
+         </section>
+      </div>
+  </div>
+</div>     
+                        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- OWM long bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="1070308379"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                    </div>
+                </div>                
+            </div>
+                                    
+        </main>
+        <div id="stick-footer-panel"></div>
+                    <div class="footer-website" onClick="toggleFooterSection(event)">
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Product Collections</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../api.html#current">Current and Forecast APIs</a></li>
+            <li><a href="../api.html#history">Historical Weather Data</a></li>
+            <li><a href="../api.html#maps">Weather Maps</a></li>
+            <li><a href="../widgets-constructor">Widgets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading">Subscription</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../appid.html">How to start</a></li>
+            <li><a href="../price.html">Pricing</a></li>
+            <li><a href="https://home.openweathermap.org/users/sign_up">Subscribe for free</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading"><a href="../about-us">About us</a></p>
+        <div class="section-content">
+          <p>OpenWeather is a team of IT experts and data scientists that has been practising deep weather data science since 2014. For each point on the globe, OpenWeather provides historical, current and forecasted weather data via light-speed APIs. Headquarters in London, UK.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Technologies</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../technology">Our technology</a></li>
+            <li><a href="../accuracy-and-quality.html">Accuracy and quality of weather data</a></li>
+            <li><a href="../stations.html">Connect your weather station</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section">
+        <p class="section-heading">Terms & Conditions</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf" target="_blank">Terms and conditions of sale</a></li>
+            <li><a href="https://openweather.co.uk/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf" target="_blank">Website	terms	and	conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section not-foldable">
+        <p class="section-heading" style="visibility: hidden">Contact us</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/team" target="_blank">Our team</a></li>
+            <li><a href="https://openweather.co.uk/blog/category/weather" target="_blank">Blog</a></li>
+            <li><a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support center</a></li>
+            <li><a href="mailto:info@openweathermap.org">info@openweathermap.org</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+        <p style="margin: 0;">Download OpenWeather app</p>
+        <div style="display: flex; flex-direction: row;">
+            <a style="margin-left: -10px;" href="https://apps.apple.com/gb/app/openweather/id1535923697" target="_blank">
+                <img style="height:60px; padding:10px;" src="../themes/openweathermap/assets/img/mobile_app/Download_on_the_App_Store_Badge_US-UK.svg" />
+            </a>  
+            <a href="https://play.google.com/store/apps/details?id=uk.co.openweather" target="_blank">
+              <img style="height:60px;"  alt='Get it on Google Play' src="../themes/openweathermap/assets/img/mobile_app/google-play-badge.png"/>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="horizontal-section">
+      <span>© 2012 — 2021 OpenWeather ® All rights reserved.</span>
+      <div class="social">
+        <a href="https://www.facebook.com/groups/270748973021342" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_facebook.png"/></a>
+        <a href="https://twitter.com/OpenWeatherMap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_twitter.png"/></a>
+        <a href="https://www.linkedin.com/company/9816754" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"/></a>
+        <a href="https://medium.com/@openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_medium.png"/></a>
+        <a href="https://t.me/openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_telegram.png"/></a>
+        <a href="https://github.com/search?q=openweathermap&amp;ref=cmdform" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_github.png"/></a>
+      </div>
+    </div>
+  </div>   
+                            <script src='../themes/openweathermap/assets/js/documentation.3berawer2323dAD124.js'></script>   
+            <link rel="stylesheet" href="../themes/openweathermap/assets/css/highlight.default.min.css">
+<script src="../themes/openweathermap/assets/js/highlight.min.js"></script>         
+        <script src="../../cdn.ravenjs.com/3.6.1/raven.min.js"></script>
+<script>Raven.config('http://66df88eb63e94f27964b84031e49b358@sentry.owm.io/16').install()</script>  
+        <script src='../themes/openweathermap/assets/js/bundle_owm_postload.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/stick_footer_panel.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/postload_scripts_js.js'></script>           
+    </body>
+
+<!-- Mirrored from openweathermap.org/api/weathermaps by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:49 GMT -->
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang='en'>
+    
+<!-- Mirrored from openweathermap.org/api/history-data-state by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:32 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <!-- smart banner apple -->
+        <meta name="apple-itunes-app" content="app-id=1535923697">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+    <meta  http-equiv=Expires content="Tue, Sep 20 2018 15:27:22 GMT">
+    <meta http-equiv="Last-Modified" content="Tue, Sep 20 2018 15:27:22 GMT">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="weather, world, Openstreetmap, forecast, Openweather, current" >
+    <meta name="description" content="These archives contain historical weather data for all ZIP codes in the US. ZIP codes in the weather data are grouped by states." >
+    <meta name="author" content="OpenWeatherMap.org">
+    <meta name="domain" content="OpenWeatherMap.org" >        
+    <meta name="p:domain_verify" content="34fe229eab8562dca90f4a5962ff80a9"/>
+    <meta property="title" content="Historical Weather Data by State for all ZIP codes" />                <link rel="shortcut icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/favicon.ico" />
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../themes/openweathermap/assets/vendor/owm/img/icons/logo_60x60.png" sizes="60x60" type="image/png">   
+        <title>Historical Weather Data by State for all ZIP codes - OpenWeatherMap</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31601618-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-31601618-1');
+</script>        
+        <script src="../../code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="../../cdn.polyfill.io/v2/polyfill.min9e24.js?features=Array.from,Array.assign,fetch&amp;flags=always,gated"></script>
+<script src='../themes/openweathermap/assets/js/bundle_owm_preload.c31872127471c475ade1.js'></script>            
+        <link href='../themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css' rel="stylesheet"> 
+<link href='../themes/openweathermap/assets/css/stick_footer_panel.c31872127471c475ade1.css' rel="stylesheet">
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">        <link href='../themes/openweathermap/assets/css/new_owm_styles.522b0c2ecd513644.css' rel="stylesheet"> 
+
+<!-- Resources -->
+<!--link href='/themes/openweathermap/assets/vendor/mosaic/fonts/font-awesome/css/font-awesome.min.css' rel="stylesheet"-->            
+<link href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,400italic,500italic' rel="stylesheet">    
+        
+    </head>
+    <body class="body-orange" onClick="closePopUps()">
+                    <style>
+    .banner_stripe {
+        width: 100%; 
+        height: 80px; 
+        background-color: #1c1c1e;
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        font-family: Roboto,sans-serif;
+        position: relative;
+    }
+
+    .banner_icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 15px;
+        background-size: 64px 64px;
+        margin: 8px;
+    }
+    .google_button {
+        /* background-color: #3e83f8; */
+        background-color: #2196f3;
+        height: 36px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,.26);
+        box-sizing: border-box;
+        color: #fff !important;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: .5px;
+        line-height: 24px;
+        margin: 6px;
+        min-width: 40px;
+        outline: 0;
+        padding: 10px 14px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .google_button:hover, .google_button:focus {
+        text-decoration: none;
+    }
+    .smartbanner__exit {
+        position: absolute;
+        top: calc(50% - 6px);
+        left: 12px;
+        display: block;
+        margin: 0;
+        width: 12px;
+        height: 12px;
+        border: 0;
+        text-align: center; 
+        }
+    .smartbanner__exit::before, .smartbanner__exit::after {
+      position: absolute;
+      width: 1px;
+      height: 12px;
+      content: ' ';
+      background: #767676;
+      }
+    .smartbanner__exit::before {
+      transform: rotate(45deg); }
+    .smartbanner__exit::after {
+      transform: rotate(-45deg); }
+
+</style>
+
+<div id="banner_android" class="banner_stripe">
+    <div style="display: flex; flex-direction: row; align-items: center; margin-left: 18px;">
+        <a class="smartbanner__exit" onClick="bannerClose()"></a>
+        <img src="../themes/openweathermap/assets/img/mobile_app/android_icon.png" class="banner_icon" />
+        <div>
+            <p style="font-size: 14px; color: #ffffff; margin: 0;">OpenWeather</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">OpenWeather Ltd.</p>
+            <p style="font-size: 12px; margin: 0; color: #96969c;">GET - on Google Play</p>
+        </div>
+    </div>
+    <a class="google_button" style="font-size: 16px;" href="https://play.google.com/store/apps/details?id=uk.co.openweather" onclick="ga('send', 'event', 'app', 'click', 'androidTopBanner');">VIEW</a>
+</div>
+
+<script>
+    
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function setCookie (name, value) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (5 * 1000 * 60 * 60 * 24))
+        document.cookie = name + '=' + escape(value) + '; expires=' + expires.toGMTString() + '; path=/'
+      }
+      
+    function bannerClose() {
+        document.getElementById("banner_android").style.display = "none";
+        setCookie("owm_banner_android_closed", true)
+    }
+    
+    document.onload = function() {
+       if ((document.cookie.indexOf("owm_banner_android_closed") === -1)  && /Android/i.test(window.navigator.userAgent)) {
+           document.getElementById("banner_android").style.display = 'flex';
+        } 
+    }()
+    
+    
+</script>   
+                <ul id="header-website" onClick="toggleMenu(event)">
+      <li class="logo">
+        <a href="../index.html">
+          <img src="../themes/openweathermap/assets/img/logo_white_cropped.png">
+        </a>
+      </li>
+      <li class="hamburger">
+        <img src="../themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"/>
+      </li>
+      <li>
+        <form role="search" id="nav-search-form" action="https://openweathermap.org/find" method="get">
+            <input type="text" id="q" name="q"  placeholder="Weather in your city">
+            <input type="submit" style="display:none;">
+        </form>
+      </li>
+      
+      <li>
+        <a href="../guide.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Guide</a>
+      </li>
+      <li>
+        <a href="../api.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'api']);">API</a>
+      </li>
+      <li>
+        <a href="../price.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'price']);">Pricing</a>
+      </li>
+      <li>
+        <a href="../weathermap.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Maps</a>
+      </li>
+      <li>
+        <a href="../our-initiatives.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">Our Initiatives</a>
+      </li>
+      <li>
+        <a href="../examples.html" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'examples']);">Partners</a>
+      </li>
+      <li>
+        <a href="https://openweather.co.uk/blog/category/weather" target="_blank" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'news']);">Blog</a>
+      </li>
+      <!-- <li>
+        <a href="/about-us" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'weather']);">About us</a>
+      </li> -->
+      <li>
+        <a href="https://home.openweathermap.org/marketplace" class="market-place" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Main', 'marketplace']);" target="_blank">Marketplace</a>
+      </li>
+                <li class="user-sign-in" id="sign_in"><a href="../home/sign_in.html">Sign in</a></li>
+            <li class="support-item">
+        <a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support</a>
+      </li>
+    </ul>
+<!-- Invisible header to take up the height -->
+<!-- <div style="height: 48pt; width: 100%; visibility: hidden;"></div> --> 
+        <div id="notes_block"></div>
+        <main class="wrapper"> 
+                            <div class="topic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                                    <h1 class="breadcrumb-title">Historical Weather Data by State</h1>
+                            </div>
+            <div class="col-sm-5">
+                <ol class="breadcrumb pull-right hidden-xs">
+                    <li><a href="../index.html">Home</a></li>
+                                            <li class="active"><a href="../api.html">API</a></li>
+                                                            
+                                                                        <li class="breadcrumb__leaf">Historical Weather Data by State</li>
+                                                            </ol>
+            </div>
+        </div>
+    </div>   
+</div>       
+                                    <div class="container documentation">
+   <div class="doc-container">
+     <div>
+       <nav>
+         <ul>
+            <li><a href="#about">About product</a></li>
+            <li><a href="#data">How to get historical weather data by state</a></li>
+            <li>
+               <a href="#parameter">Weather parameters</a>
+               <ul>
+                  <li><a href="#zip">List of states, ZIP codes and price</a></li>
+                  <li><a href="#ex">Example</a></li>
+                  <li><a href="#list">List of condition codes</a></li>
+               </ul>
+            </li>
+         </ul>
+      </nav>
+       <div class="side-banner">
+         <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- Skyscraper -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="6999090776"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>       </div>
+     </div>
+     <div>
+         <p class=lead>
+            These archives contain historical weather data for all ZIP codes in the US. ZIP codes in the weather data are grouped by states.
+         </p>
+         <section id="about">
+            <h2>About</h2>
+            <p>This product allows you to download archives of historical weather data by state for all ZIP codes in the USA.</p>
+            <p>Each archive includes weather data:</p>
+            <ul>
+               <li>for all ZIP codes within the state that you have chosen</li>
+               <li>for one chosen year (Currently available for 2018 and 2019. Other years are coming soon.)</li>
+            </ul>
+            <p>The downloaded weather archive will contain a set of files. Each of these files contains historical data for one ZIP code.</p>
+            <p>Weather data archive includes 15 weather parameters, such as temperature, precipitation, wind and many more. Data is provided with <b>hourly step</b> in CSV format.</p>
+            <p>Price varies by state, since each state has a different number of ZIP codes. Price per state can be found <a href="#zip">here</a>.</p>
+            <div class="text-center">
+               <a class="btn_like btn-orange" href="https://home.openweathermap.org/zip_code_data/new" target="_blank">Buy historical data</a>
+            </div>
+            <p>You can find more about ways to access our historical data on our <a target="_blank" href="../price.html#history">price page</a>.</p>
+         </section>
+         <section id="data">
+            <h2>How to get historical weather data by state</h2>
+            <p>To request historical data, please follow these steps:</p>
+            <ol>
+               <li>Go to the <a href="https://home.openweathermap.org/marketplace">OpenWeatherMap Marketplace</a> and choose the <a href="https://home.openweathermap.org/zip_code_data/new">"Historical Weather Data by State for all ZIP codes, USA"</a> product.</li>
+               <li>Select the state you are interested in.  </li>
+               <li>Select the year from the archive.</li>
+               <li>Click on the "Place order" button and check your order details.</li>
+               <li>To complete the checkout process, please click on the "Checkout" button and proceed to payment.</li>
+            </ol>
+            <div class="text-center"><a class="btn_like btn-orange" href="https://home.openweathermap.org/zip_code_data/new" target="_blank">Buy historical data</a>
+            </div>
+            <p>After the successful payment you will be able to find your order in two ways:</p>
+            <ol>
+               <li>You will also receive an email with the link to download your current order.</li>
+               <li>All purchases can be found in your personal account, in the <a href="https://home.openweathermap.org/marketplace/my_orders">"Order"</a> section.</li>
+            </ol>
+            <a href="https://home.openweathermap.org/zip_code_data/new" target=_blank>
+            <img src="../themes/openweathermap/assets/img/zipcodemarketplace.png"
+               alt="Extract example" class="responsive-img-doc">
+            </a>
+         </section>
+         <section id="parameter">
+            <h2>Weather parameters</h2>
+            <div class="info-board info-board-orange">
+               If you do not see some of the parameters in downloaded archive, it means that these weather phenomena just have not happened in the chosen time period at the chosen location. Only really measured or calculated data is displayed in data archive.
+            </div>
+            <section id="JSON">
+               <h3>Parameters</h3>
+               <ul class="docs-list">
+                  <li><code>dt</code> Time of data calculation, unix, UTC</li>
+                  <li><code>dt_iso</code>Date and time in UTC format</li>
+                  <li><code>timezone</code> Shift in seconds from UTC</li>
+                  <li><code>city_id</code> ZIP code
+                  <li><code>city_name</code> City name
+                  </li>
+                  <li><code>lat</code> Geographical coordinates of the location (latitude)
+                  </li>
+                  <li><code>lon</code> Geographical coordinates of the location (longitude)
+                  </li>
+                  <li><code>temp</code> Temperature, Kelvin</li>
+                  <li><code>feels_like</code> This temperature parameter accounts for the human perception of weather, Kelvin </li>
+                  <li><code>temp_min</code> Minimum temperature at the moment. This is deviation from temperature that is possible for large cities and megalopolises geographically expanded (use these parameter optionally), Kelvin</li>
+                  <li><code>temp_max</code> Maximum temperature at the moment. This is deviation from temperature that is possible for large cities and megalopolises geographically expanded (use these parameter optionally), Kelvin</li>
+                  <li><code>pressure</code> Atmospheric pressure (on the sea level), hPa</li>
+                  <li><code>sea_level</code> Sea level pressure, hPa</li>
+                  <li><code>grnd_level</code> Ground level pressure, hPa</li>
+                  <li><code>humidity</code> Humidity, %</li>
+                  <li><code>wind_speed</code> Wind speed, meter/sec</li>
+                  <li><code>wind_deg</code> Wind direction, degrees (meteorological)</li>
+                  <li><code>rain_1h</code> Rain volume for the last hour, mm</li>
+                  <li><code>rain_3h</code> Rain volume for the last 3 hours, mm</li>
+                  <li><code>snow_1h</code> Snow volume for the last hour, mm (in liquid state)</li>
+                  <li><code>snow_3h</code> Snow volume for the last 3 hours, mm (in liquid state)</li>
+                  <li><code>clouds_all</code> Cloudiness, %</li>
+                  <li><code>weather_id</code> Weather condition id (more info <a target="_blank" href="../weather-conditions.html#Weather-Condition-Codes-2">Weather condition codes</a>)</li>
+                  <li><code>weather_main</code> Group of weather parameters (Rain, Snow, Extreme etc.)</li>
+                  <li><code>weather_description</code> Weather condition within the group</li>
+                  <li><code>weather_icon</code> Weather icon id (more info <a href="../weather-conditions.html#Icon-list" target="_blank">Weather icon</a>) </li>
+               </ul>
+            </section>
+            <section id="zip">
+               <h3>List of states, ZIP codes and price</h3>
+               <table class="material-table">
+                  <tr>
+                     <th>State name</th>
+                     <th>Number of ZIP codes</th>
+                     <th>Price</th>
+                  </tr>
+                  <tr>
+                     <td>Alabama </td>
+                     <td> 811   </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Alaska </td>
+                     <td> 273  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Arizona </td>
+                     <td> 528  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Arkansas </td>
+                     <td> 705  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>California </td>
+                     <td> 2591  </td>
+                     <td> 1,500 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Colorado </td>
+                     <td> 645  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Connecticut </td>
+                     <td> 429  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Delaware </td>
+                     <td> 96  </td>
+                     <td> 200 USD</td>
+                  </tr>
+                  <tr>
+                     <td>District of Columbia </td>
+                     <td> 277  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Florida </td>
+                     <td> 1472  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Georgia </td>
+                     <td> 952  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Hawai`i </td>
+                     <td> 137  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Idaho </td>
+                     <td> 320  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Illinois </td>
+                     <td> 1575  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Indiana </td>
+                     <td> 967  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Iowa </td>
+                     <td> 1055  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Kansas </td>
+                     <td> 747  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Kentucky </td>
+                     <td> 946  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Louisiana </td>
+                     <td> 719  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Maine </td>
+                     <td> 485  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Maryland </td>
+                     <td> 605  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Massachusetts </td>
+                     <td> 684  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Michigan </td>
+                     <td> 1159  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Minnesota </td>
+                     <td> 991  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Mississippi </td>
+                     <td> 531  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Missouri </td>
+                     <td> 1156  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Montana </td>
+                     <td> 404  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Nebraska </td>
+                     <td> 620  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Nevada </td>
+                     <td> 253  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>New Hampshire </td>
+                     <td> 281  </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>New Jersey </td>
+                     <td> 723  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>New Mexico </td>
+                     <td> 427  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>New York </td>
+                     <td> 2153  </td>
+                     <td> 1,500 USD</td>
+                  </tr>
+                  <tr>
+                     <td>North Carolina </td>
+                     <td> 1081  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>North Dakota </td>
+                     <td> 407  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Ohio </td>
+                     <td> 1415  </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Oklahoma </td>
+                     <td> 764  </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Oregon </td>
+                     <td> 478  </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Pennsylvania </td>
+                     <td> 2176  </td>
+                     <td> 1,500 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Rhode Island </td>
+                     <td> 90   </td>
+                     <td> 200 USD</td>
+                  </tr>
+                  <tr>
+                     <td>South Carolina </td>
+                     <td> 534   </td>
+                     <td> 700 USD</td>
+                  </tr>
+                  <tr>
+                     <td>South Dakota </td>
+                     <td> 385   </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Tennessee </td>
+                     <td> 785   </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Texas </td>
+                     <td> 2598   </td>
+                     <td> 1,500 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Utah </td>
+                     <td> 346   </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Vermont </td>
+                     <td> 308   </td>
+                     <td> 400 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Virginia </td>
+                     <td> 1214   </td>
+                     <td> 1,300 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Washington </td>
+                     <td> 716   </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>West Virginia </td>
+                     <td> 851   </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Wisconsin </td>
+                     <td> 896   </td>
+                     <td> 1,000 USD</td>
+                  </tr>
+                  <tr>
+                     <td>Wyoming </td>
+                     <td> 195   </td>
+                     <td> 400 USD</td>
+                  </tr>
+               </table>
+            </section>
+            <section id="ex">
+               <h3>Example</h3>
+               <a href="../themes/openweathermap/assets/img/zipcodeexample.png" target=_blank>
+               <img src="../themes/openweathermap/assets/img/zipcodeexample.png"
+                  alt="Extract example" class="responsive-img-doc">
+               </a>
+            </section>
+            <section id="list">
+               <h3>List of the weather condition codes</h3>
+               <p>List of the <a target="_blank" href="../weather-conditions.html">weather condition codes</a> with icons (range of thunderstorm, drizzle, rain, snow, clouds, atmosphere including extreme conditions like tornado, hurricane etc.) can be found <a target="_blank" href="../weather-conditions.html">here</a>.</p>
+            </section>
+         </section>
+      </div>
+   </div>
+</div>     
+                        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <script async src="../../pagead2.googlesyndication.com/pagead/js/f.txt"></script>
+<!-- OWM long bottom -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9649553505534207"
+     data-ad-slot="1070308379"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>                    </div>
+                </div>                
+            </div>
+                                    
+        </main>
+        <div id="stick-footer-panel"></div>
+                    <div class="footer-website" onClick="toggleFooterSection(event)">
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Product Collections</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../api.html#current">Current and Forecast APIs</a></li>
+            <li><a href="../api.html#history">Historical Weather Data</a></li>
+            <li><a href="../api.html#maps">Weather Maps</a></li>
+            <li><a href="../widgets-constructor">Widgets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading">Subscription</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../appid.html">How to start</a></li>
+            <li><a href="../price.html">Pricing</a></li>
+            <li><a href="https://home.openweathermap.org/users/sign_up">Subscribe for free</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <p class="section-heading"><a href="../about-us">About us</a></p>
+        <div class="section-content">
+          <p>OpenWeather is a team of IT experts and data scientists that has been practising deep weather data science since 2014. For each point on the globe, OpenWeather provides historical, current and forecasted weather data via light-speed APIs. Headquarters in London, UK.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="horizontal-section">
+      <div class="footer-section">
+        <p class="section-heading">Technologies</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="../technology">Our technology</a></li>
+            <li><a href="../accuracy-and-quality.html">Accuracy and quality of weather data</a></li>
+            <li><a href="../stations.html">Connect your weather station</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section">
+        <p class="section-heading">Terms & Conditions</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf" target="_blank">Terms and conditions of sale</a></li>
+            <li><a href="https://openweather.co.uk/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf" target="_blank">Website	terms	and	conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-section not-foldable">
+        <p class="section-heading" style="visibility: hidden">Contact us</p>
+        <div class="section-content">
+          <ul>
+            <li><a href="https://openweather.co.uk/team" target="_blank">Our team</a></li>
+            <li><a href="https://openweather.co.uk/blog/category/weather" target="_blank">Blog</a></li>
+            <li><a href="https://openweathermap.force.com/s/contactsupport" target="_blank">Support center</a></li>
+            <li><a href="mailto:info@openweathermap.org">info@openweathermap.org</a><li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+        <p style="margin: 0;">Download OpenWeather app</p>
+        <div style="display: flex; flex-direction: row;">
+            <a style="margin-left: -10px;" href="https://apps.apple.com/gb/app/openweather/id1535923697" target="_blank">
+                <img style="height:60px; padding:10px;" src="../themes/openweathermap/assets/img/mobile_app/Download_on_the_App_Store_Badge_US-UK.svg" />
+            </a>  
+            <a href="https://play.google.com/store/apps/details?id=uk.co.openweather" target="_blank">
+              <img style="height:60px;"  alt='Get it on Google Play' src="../themes/openweathermap/assets/img/mobile_app/google-play-badge.png"/>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="horizontal-section">
+      <span>© 2012 — 2021 OpenWeather ® All rights reserved.</span>
+      <div class="social">
+        <a href="https://www.facebook.com/groups/270748973021342" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_facebook.png"/></a>
+        <a href="https://twitter.com/OpenWeatherMap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_twitter.png"/></a>
+        <a href="https://www.linkedin.com/company/9816754" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"/></a>
+        <a href="https://medium.com/@openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_medium.png"/></a>
+        <a href="https://t.me/openweathermap" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_telegram.png"/></a>
+        <a href="https://github.com/search?q=openweathermap&amp;ref=cmdform" target="_blank"><img src="../themes/openweathermap/assets/img/owm_icons/icon_github.png"/></a>
+      </div>
+    </div>
+  </div>   
+                            <script src='../themes/openweathermap/assets/js/documentation.3berawer2323dAD124.js'></script>   
+            <link rel="stylesheet" href="../themes/openweathermap/assets/css/highlight.default.min.css">
+<script src="../themes/openweathermap/assets/js/highlight.min.js"></script>         
+        <script src="../../cdn.ravenjs.com/3.6.1/raven.min.js"></script>
+<script>Raven.config('http://66df88eb63e94f27964b84031e49b358@sentry.owm.io/16').install()</script>  
+        <script src='../themes/openweathermap/assets/js/bundle_owm_postload.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/stick_footer_panel.c31872127471c475ade1.js'></script>
+<script src='../themes/openweathermap/assets/js/postload_scripts_js.js'></script>           
+    </body>
+
+<!-- Mirrored from openweathermap.org/api/history-data-state by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Apr 2021 10:26:33 GMT -->
+</html>
